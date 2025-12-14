@@ -64,13 +64,6 @@ Running the **Historical Signal Scanner** across major tickers (AAPL, NVDA, SPY)
 
 *Note: This simulation validates that price successfully rotates from the identified Entry levels to the nearest Resistance levels the vast majority of the time.*
 
-## Resume Update
-Your resume has been updated in `Resume.tex` to include this project:
-
-> **ICT Buy the Dip Analyzer** | Python, Pandas, TradingView Lightweight Charts
-> * Developed an algorithmic trading tool detecting ICT concepts across 1200+ candles with high precision.
-> * Engineered high-performance interactive dashboard visualizing institutional order flow.
-> * Implemented smart filtering to prioritize key liquidity levels near current price action.
 
 ## Troubleshooting
 If you see a blank screen locally:
