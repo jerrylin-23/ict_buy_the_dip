@@ -938,7 +938,7 @@ def scan_history(symbol: str, days_back: int = 365):
             
             # Generate Snapshot ID
             import os
-            output_dir = os.path.join(os.getcwd(), 'snapshots')
+            output_dir = os.path.join(os.getcwd(), 'samples')
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
                 
@@ -991,7 +991,7 @@ if __name__ == "__main__":
                 
                 # Save to specific folder
                 import os
-                output_dir = "snapshots"
+                output_dir = "samples"
                 if not os.path.exists(output_dir):
                     try:
                         os.makedirs(output_dir)
