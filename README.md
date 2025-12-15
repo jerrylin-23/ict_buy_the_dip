@@ -88,15 +88,13 @@ ICT/
 
 ### 📸 Example Charts
 
-View sample trade snapshots from the backtest:
+View sample trade snapshots from the backtest (click to view in browser):
 
 | Trade | Outcome | Chart |
 |-------|---------|-------|
-| NVDA 2023-12-20 | ✅ WIN (TP3) | [View Chart](src/samples/nvda_daily_1214_2105/charts/04_2023-12-20_WIN_TP3.html) |
-| NVDA 2024-03-08 | ✅ WIN (TP1) | [View Chart](src/samples/nvda_daily_1214_2105/charts/35_2024-03-08_WIN_TP1.html) |
-| NVDA 2024-04-11 | ❌ LOSS (SL) | [View Chart](src/samples/nvda_daily_1214_2105/charts/44_2024-04-11_LOSS_SL.html) |
-
-> 💡 **Tip**: Download the HTML file and open in your browser to view the interactive TradingView chart.
+| NVDA 2023-12-20 | ✅ WIN (TP3) | [View Chart](https://htmlpreview.github.io/?https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/nvda_daily_1214_2105/charts/04_2023-12-20_WIN_TP3.html) |
+| NVDA 2024-03-08 | ✅ WIN (TP1) | [View Chart](https://htmlpreview.github.io/?https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/nvda_daily_1214_2105/charts/35_2024-03-08_WIN_TP1.html) |
+| NVDA 2024-04-11 | ❌ LOSS (SL) | [View Chart](https://htmlpreview.github.io/?https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/nvda_daily_1214_2105/charts/44_2024-04-11_LOSS_SL.html) |
 
 ---
 
