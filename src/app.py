@@ -3,9 +3,15 @@ from ict_analyzer import analyze_stock
 import pandas as pd
 import threading
 import time
+import os
+import gc
 from datetime import datetime
 
 app = Flask(__name__)
+
+# ============ Demo Mode for Render ============
+DEMO_MODE = os.environ.get('DEMO_MODE', 'false').lower() == 'true'
+DEMO_TICKER_LIMIT = 20  # Max tickers to scan in demo mode
 
 # ============ Background Scanner Cache ============
 SCAN_CACHE = {}  # {symbol: {price, entry, dist, setup, timestamp}}
@@ -14,20 +20,35 @@ SCAN_STATUS = {
     'last_scan': None,
     'next_scan': None,
     'is_scanning': False,
-    'scan_count': 0
+    'scan_count': 0,
+    'demo_mode': DEMO_MODE
 }
-SCAN_INTERVAL = 300  # 5 minutes
 
-# Default Watchlist (Fallback)
+# Longer interval in demo mode to reduce memory pressure
+SCAN_INTERVAL = 900 if DEMO_MODE else 300  # 15 min demo, 5 min normal
+
+# Default Watchlist (limited for demo)
 DEFAULT_WATCHLIST = [
     "SPY", "IWM", "QQQ", "DIA",
     "NVDA", "AAPL", "MSFT", "AMZN", "GOOGL"
 ]
 
+# Demo watchlist - popular tickers only
+DEMO_WATCHLIST = [
+    "SPY", "QQQ", "IWM", "DIA",
+    "NVDA", "AAPL", "MSFT", "AMZN", "GOOGL", "META",
+    "TSLA", "AMD", "NFLX", "CRM", "ORCL",
+    "JPM", "V", "MA", "BAC", "GS"
+]
+
 def load_watchlist():
     """Load tickers from tickers.txt or return default."""
+    # In demo mode, use limited watchlist
+    if DEMO_MODE:
+        print(f"🎮 DEMO MODE: Using limited watchlist ({len(DEMO_WATCHLIST)} tickers)")
+        return DEMO_WATCHLIST
+    
     try:
-        import os
         # Look in current directory or src/
         paths = ['tickers.txt', 'src/tickers.txt', '/Users/jerry/Projects/ICT/src/tickers.txt']
         for p in paths:
@@ -43,6 +64,7 @@ def load_watchlist():
     return DEFAULT_WATCHLIST
 
 WATCHLIST = load_watchlist()
+print(f"🚀 Scanner initialized: DEMO_MODE={DEMO_MODE}, {len(WATCHLIST)} tickers, interval={SCAN_INTERVAL}s")
 
 
 def run_scanner():
@@ -100,7 +122,9 @@ def run_scanner():
         SCAN_STATUS['is_scanning'] = False
         SCAN_STATUS['scan_count'] += 1
     
-    print(f"✅ [Background] Scan complete. Updated cache.")
+    # Force garbage collection to free memory
+    gc.collect()
+    print(f"✅ [Background] Scan complete. Cache size: {len(SCAN_CACHE)} tickers.")
 
 
 def scanner_thread():
