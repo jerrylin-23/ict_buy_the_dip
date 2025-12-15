@@ -35,7 +35,7 @@ def main():
             page.wait_for_timeout(4000)  # Wait for TradingView chart to render
             
             output_path = f"{OUTPUT_DIR}/{name}.png"
-            page.screenshot(path=output_path)
+            page.screenshot(path=output_path, full_page=True)
             print(f"   ✅ Saved to {output_path}")
         
         browser.close()
