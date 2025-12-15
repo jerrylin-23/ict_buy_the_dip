@@ -29,6 +29,20 @@ A Python-based algorithmic trading tool that detects **ICT concepts** like Fair 
 
 ---
 
+## 🌐 Live Demo (Render)
+
+🔗 **Live Web Scanner**:  
+https://ict-buy-the-dip.onrender.com/
+
+> ⚠️ **Render Performance Disclaimer**  
+> This application is hosted on Render’s **free tier**.  
+> - Initial load may take **30–60 seconds** due to cold starts  
+> - Market scans may run slower because of **CPU and memory limits**  
+> - Performance may differ significantly from **local execution**
+>
+> For best performance, run the app **locally** using the instructions below.
+
+
 ## 🚀 Quick Start
 
 ### 1. Clone & Setup
