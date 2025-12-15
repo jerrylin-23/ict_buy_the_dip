@@ -1,6 +1,6 @@
 # ICT Buy the Dip Analyzer
 
-A Python-based algorithmic trading tool that detects **ICT (Inner Circle Trader) concepts** like Fair Value Gaps (FVGs), Equal Highs/Lows, and Swing Points to generate actionable trade plans.
+A Python-based algorithmic trading tool that detects **ICT concepts** like Fair Value Gaps (FVGs), Equal Highs/Lows, and Swing Points to generate actionable trade plans.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-Web%20UI-green.svg)
