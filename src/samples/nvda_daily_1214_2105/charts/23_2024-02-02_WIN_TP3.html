@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NVDA 2024-02-02 - TP3</title>
+    <style>
+        body { 
+            background: #0a0a0a; 
+            color: #d1d4dc; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0; 
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #4caf50;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #4caf50;
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 16px;
+        }
+        .stat { padding: 5px 15px; background: #1a1a2e; border-radius: 5px; }
+        .panel {
+            margin-bottom: 30px;
+            border: 1px solid #363c4e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .panel-header {
+            background: #1a1a2e;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .panel iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>✅ WIN - TP3 HIT</h1>
+        <div class="stats">
+            <div class="stat">📅 2024-02-02</div>
+            <div class="stat">💰 Entry: $66.00</div>
+            <div class="stat">🎯 Exit: $69.66</div>
+            <div class="stat" style="color: #4caf50">P&L: +5.54%</div>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <div class="panel-header">📊 SETUP (Before Entry)</div>
+        <iframe srcdoc="
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>NVDA ICT Analysis</title>
+            <script src=&quot;https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js&quot;></script>
+            <style>
+                body { background: #0a0a0a; color: #d1d4dc; font-family: -apple-system, sans-serif; margin: 0; display: flex; height: 100vh; }
+                #chart-container { flex: 1; position: relative; }
+                #sidebar { width: 280px; background: #1a1a2e; padding: 20px; border-left: 1px solid #363c4e; overflow-y: auto; box-shadow: -2px 0 10px rgba(0,0,0,0.3); }
+                h2 { color: #2196f3; margin-top: 0; font-size: 20px; }
+                h3 { color: #a0a0a0; font-size: 14px; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #363c4e; padding-bottom: 5px; }
+                .stat-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+                .bullish { color: #4caf50; }
+                .bearish { color: #ef5350; }
+                .legend { position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 24px; font-weight: bold; color: rgba(255, 255, 255, 0.7); }
+            </style>
+        </head>
+        <body>
+            <div id=&quot;chart-container&quot;>
+                <div class=&quot;legend&quot;>NVDA 4H</div>
+            </div>
+            
+            <div id=&quot;sidebar&quot;>
+                <h2>📊 Analysis Summary</h2>
+                <div style=&quot;font-size: 13px; line-height: 1.6;&quot;>
+                    ✅ BULL GAP below @ $65.72<br>🟢 SUPPORT (EQL) @ $60.64
+        <div style=&quot;margin-top: 15px; border-top: 1px solid #363c4e; padding-top: 10px;&quot;>
+            <h3 style=&quot;color: #4caf50; margin-bottom: 5px;&quot;>🚀 BULLISH SETUP</h3>
+            <div style=&quot;font-size: 13px; color: #d1d4dc;&quot;>
+                <div><strong>Entry:</strong> <span style=&quot;color: #4caf50;&quot;>$66.00</span> (Limit Buy (FVG))</div>
+                <div><strong>Stop Loss:</strong> <span style=&quot;color: #ef5350;&quot;>$64.78</span></div>
+                <div style=&quot;margin-top: 5px;&quot;><strong>Targets:</strong></div>
+                <div>🎯 TP1: <span style=&quot;color: #2196f3;&quot;>$67.32</span></div>
+                <div>🎯 TP2: <span style=&quot;color: #2196f3;&quot;>$68.44</span></div>
+                <div>🚀 TP3: <span style=&quot;color: #2196f3;&quot;>$69.66</span></div>
+            </div>
+        </div>
+        
+                </div>
+                
+                <h3>Key Levels Found</h3>
+                <div class=&quot;stat-item&quot;>
+                    <span>Fair Value Gaps:</span>
+                    <span>22</span>
+                </div>
+                <div class=&quot;stat-item&quot;>
+                    <span>EQH/EQL Zones:</span>
+                    <span>3</span>
+                </div>
+                
+            </div>
+
+            <script>
+                try {
+                    const data = {&quot;candles&quot;: [{&quot;time&quot;: 1702468800, &quot;open&quot;: 47.62900161743164, &quot;high&quot;: 48.59400177001953, &quot;low&quot;: 47.60799789428711, &quot;close&quot;: 48.275001525878906}, {&quot;time&quot;: 1702483200, &quot;open&quot;: 48.28049850463867, &quot;high&quot;: 48.53200149536133, &quot;low&quot;: 47.779998779296875, &quot;close&quot;: 47.98299789428711}, {&quot;time&quot;: 1702497600, &quot;open&quot;: 47.98250198364258, &quot;high&quot;: 48.12699890136719, &quot;low&quot;: 47.928001403808594, &quot;close&quot;: 48.09000015258789}, {&quot;time&quot;: 1702555200, &quot;open&quot;: 48.474998474121094, &quot;high&quot;: 48.67000198364258, &quot;low&quot;: 47.888999938964844, &quot;close&quot;: 48.20738983154297}, {&quot;time&quot;: 1702569600, &quot;open&quot;: 48.20750045776367, &quot;high&quot;: 48.29999923706055, &quot;low&quot;: 47.422000885009766, &quot;close&quot;: 48.12000274658203}, {&quot;time&quot;: 1702584000, &quot;open&quot;: 48.11101150512695, &quot;high&quot;: 48.349998474121094, &quot;low&quot;: 48.11101150512695, &quot;close&quot;: 48.349998474121094}, {&quot;time&quot;: 1702641600, &quot;open&quot;: 48.400001525878906, &quot;high&quot;: 49.40399932861328, &quot;low&quot;: 48.382999420166016, &quot;close&quot;: 49.13100051879883}, {&quot;time&quot;: 1702656000, &quot;open&quot;: 49.13399887084961, &quot;high&quot;: 49.292999267578125, &quot;low&quot;: 48.849998474121094, &quot;close&quot;: 48.96500015258789}, {&quot;time&quot;: 1702670400, &quot;open&quot;: 48.96500015258789, &quot;high&quot;: 49.066001892089844, &quot;low&quot;: 48.88399887084961, &quot;close&quot;: 48.944000244140625}, {&quot;time&quot;: 1702900800, &quot;open&quot;: 49.400001525878906, &quot;high&quot;: 50.0, &quot;low&quot;: 49.150001525878906, &quot;close&quot;: 49.79500198364258}, {&quot;time&quot;: 1702915200, &quot;open&quot;: 49.79100036621094, &quot;high&quot;: 50.400001525878906, &quot;low&quot;: 49.720008850097656, &quot;close&quot;: 50.39400100708008}, {&quot;time&quot;: 1702929600, &quot;open&quot;: 50.400001525878906, &quot;high&quot;: 50.43299102783203, &quot;low&quot;: 50.0629997253418, &quot;close&quot;: 50.08100128173828}, {&quot;time&quot;: 1702987200, &quot;open&quot;: 49.42399978637695, &quot;high&quot;: 49.70000076293945, &quot;low&quot;: 48.89500045776367, &quot;close&quot;: 49.13750076293945}, {&quot;time&quot;: 1703001600, &quot;open&quot;: 49.137001037597656, &quot;high&quot;: 49.584999084472656, &quot;low&quot;: 49.060001373291016, &quot;close&quot;: 49.5}, {&quot;time&quot;: 1703016000, &quot;open&quot;: 49.499000549316406, &quot;high&quot;: 49.617000579833984, &quot;low&quot;: 49.439998626708984, &quot;close&quot;: 49.61289978027344}, {&quot;time&quot;: 1703073600, &quot;open&quot;: 49.654998779296875, &quot;high&quot;: 49.999000549316406, &quot;low&quot;: 49.4630012512207, &quot;close&quot;: 49.8120002746582}, {&quot;time&quot;: 1703088000, &quot;open&quot;: 49.81050109863281, &quot;high&quot;: 49.875, &quot;low&quot;: 48.2609977722168, &quot;close&quot;: 48.362998962402344}, {&quot;time&quot;: 1703102400, &quot;open&quot;: 48.37200164794922, &quot;high&quot;: 48.49800109863281, &quot;low&quot;: 48.097999572753906, &quot;close&quot;: 48.11000061035156}, {&quot;time&quot;: 1703160000, &quot;open&quot;: 48.810997009277344, &quot;high&quot;: 49.095001220703125, &quot;low&quot;: 48.50400161743164, &quot;close&quot;: 48.7130012512207}, {&quot;time&quot;: 1703174400, &quot;open&quot;: 48.71500015258789, &quot;high&quot;: 48.935997009277344, &quot;low&quot;: 48.41899871826172, &quot;close&quot;: 48.91600036621094}, {&quot;time&quot;: 1703188800, &quot;open&quot;: 48.91899871826172, &quot;high&quot;: 49.045989990234375, &quot;low&quot;: 48.87300109863281, &quot;close&quot;: 48.99700164794922}, {&quot;time&quot;: 1703246400, &quot;open&quot;: 49.19499969482422, &quot;high&quot;: 49.382999420166016, &quot;low&quot;: 48.917999267578125, &quot;close&quot;: 49.04500198364258}, {&quot;time&quot;: 1703260800, &quot;open&quot;: 49.04199981689453, &quot;high&quot;: 49.14800262451172, &quot;low&quot;: 48.467002868652344, &quot;close&quot;: 48.8120002746582}, {&quot;time&quot;: 1703275200, &quot;open&quot;: 48.813499450683594, &quot;high&quot;: 48.834999084472656, &quot;low&quot;: 48.66400146484375, &quot;close&quot;: 48.82699966430664}, {&quot;time&quot;: 1703592000, &quot;open&quot;: 48.96799850463867, &quot;high&quot;: 49.599998474121094, &quot;low&quot;: 48.95000076293945, &quot;close&quot;: 49.32500076293945}, {&quot;time&quot;: 1703606400, &quot;open&quot;: 49.32500076293945, &quot;high&quot;: 49.48699951171875, &quot;low&quot;: 49.26499938964844, &quot;close&quot;: 49.45199966430664}, {&quot;time&quot;: 1703620800, &quot;open&quot;: 49.45199966430664, &quot;high&quot;: 49.47853088378906, &quot;low&quot;: 49.26499938964844, &quot;close&quot;: 49.28099822998047}, {&quot;time&quot;: 1703678400, &quot;open&quot;: 49.5109977722168, &quot;high&quot;: 49.68000030517578, &quot;low&quot;: 49.084999084472656, &quot;close&quot;: 49.36227035522461}, {&quot;time&quot;: 1703692800, &quot;open&quot;: 49.361000061035156, &quot;high&quot;: 49.507999420166016, &quot;low&quot;: 49.282752990722656, &quot;close&quot;: 49.3738899230957}, {&quot;time&quot;: 1703707200, &quot;open&quot;: 49.37799072265625, &quot;high&quot;: 49.435001373291016, &quot;low&quot;: 49.323001861572266, &quot;close&quot;: 49.420997619628906}, {&quot;time&quot;: 1703764800, &quot;open&quot;: 49.64299774169922, &quot;high&quot;: 49.8489990234375, &quot;low&quot;: 49.4119987487793, &quot;close&quot;: 49.65903854370117}, {&quot;time&quot;: 1703779200, &quot;open&quot;: 49.665000915527344, &quot;high&quot;: 49.88399124145508, &quot;low&quot;: 49.470001220703125, &quot;close&quot;: 49.52436065673828}, {&quot;time&quot;: 1703793600, &quot;open&quot;: 49.52450942993164, &quot;high&quot;: 49.70600128173828, &quot;low&quot;: 49.474998474121094, &quot;close&quot;: 49.52000045776367}, {&quot;time&quot;: 1703851200, &quot;open&quot;: 49.8129997253418, &quot;high&quot;: 49.99700164794922, &quot;low&quot;: 48.750999450683594, &quot;close&quot;: 48.8120002746582}, {&quot;time&quot;: 1703865600, &quot;open&quot;: 48.80799865722656, &quot;high&quot;: 49.95000076293945, &quot;low&quot;: 48.790000915527344, &quot;close&quot;: 49.73400115966797}, {&quot;time&quot;: 1703880000, &quot;open&quot;: 49.73299789428711, &quot;high&quot;: 49.77000045776367, &quot;low&quot;: 49.44599914550781, &quot;close&quot;: 49.5260009765625}, {&quot;time&quot;: 1704196800, &quot;open&quot;: 49.125, &quot;high&quot;: 49.266502380371094, &quot;low&quot;: 47.595001220703125, &quot;close&quot;: 48.11602020263672}, {&quot;time&quot;: 1704211200, &quot;open&quot;: 48.11750030517578, &quot;high&quot;: 48.347999572753906, &quot;low&quot;: 47.820011138916016, &quot;close&quot;: 47.88399887084961}, {&quot;time&quot;: 1704225600, &quot;open&quot;: 47.8859977722168, &quot;high&quot;: 48.20800018310547, &quot;low&quot;: 47.777000427246094, &quot;close&quot;: 48.185001373291016}, {&quot;time&quot;: 1704283200, &quot;open&quot;: 47.45000076293945, &quot;high&quot;: 48.18410110473633, &quot;low&quot;: 47.31999969482422, &quot;close&quot;: 47.751502990722656}, {&quot;time&quot;: 1704297600, &quot;open&quot;: 47.75040054321289, &quot;high&quot;: 47.87900161743164, &quot;low&quot;: 47.44499969482422, &quot;close&quot;: 47.652000427246094}, {&quot;time&quot;: 1704312000, &quot;open&quot;: 47.64896011352539, &quot;high&quot;: 47.74700164794922, &quot;low&quot;: 47.45000076293945, &quot;close&quot;: 47.56999969482422}, {&quot;time&quot;: 1704369600, &quot;open&quot;: 47.76700210571289, &quot;high&quot;: 48.4010009765625, &quot;low&quot;: 47.507999420166016, &quot;close&quot;: 48.305660247802734}, {&quot;time&quot;: 1704384000, &quot;open&quot;: 48.303009033203125, &quot;high&quot;: 48.5, &quot;low&quot;: 48.053001403808594, &quot;close&quot;: 48.19586944580078}, {&quot;time&quot;: 1704398400, &quot;open&quot;: 48.189998626708984, &quot;high&quot;: 48.26000213623047, &quot;low&quot;: 47.97999954223633, &quot;close&quot;: 47.99399948120117}, {&quot;time&quot;: 1704456000, &quot;open&quot;: 48.461997985839844, &quot;high&quot;: 49.547000885009766, &quot;low&quot;: 48.306007385253906, &quot;close&quot;: 49.38750076293945}, {&quot;time&quot;: 1704470400, &quot;open&quot;: 49.38999938964844, &quot;high&quot;: 49.4379997253418, &quot;low&quot;: 48.78302001953125, &quot;close&quot;: 48.868499755859375}, {&quot;time&quot;: 1704484800, &quot;open&quot;: 48.86199951171875, &quot;high&quot;: 49.10300064086914, &quot;low&quot;: 48.80500030517578, &quot;close&quot;: 49.09000015258789}, {&quot;time&quot;: 1704715200, &quot;open&quot;: 49.512001037597656, &quot;high&quot;: 51.572998046875, &quot;low&quot;: 49.479000091552734, &quot;close&quot;: 51.28200149536133}, {&quot;time&quot;: 1704729600, &quot;open&quot;: 51.28685760498047, &quot;high&quot;: 51.89799880981445, &quot;low&quot;: 51.10300064086914, &quot;close&quot;: 51.8703498840332}, {&quot;time&quot;: 1704744000, &quot;open&quot;: 51.86899948120117, &quot;high&quot;: 52.275001525878906, &quot;low&quot;: 51.81599807739258, &quot;close&quot;: 52.25499725341797}, {&quot;time&quot;: 1704801600, &quot;open&quot;: 52.4010009765625, &quot;high&quot;: 52.9010009765625, &quot;low&quot;: 51.69000244140625, &quot;close&quot;: 52.8599967956543}, {&quot;time&quot;: 1704816000, &quot;open&quot;: 52.85240936279297, &quot;high&quot;: 54.32500076293945, &quot;low&quot;: 52.7706298828125, &quot;close&quot;: 53.5584716796875}, {&quot;time&quot;: 1704830400, &quot;open&quot;: 53.55399703979492, &quot;high&quot;: 53.65700149536133, &quot;low&quot;: 53.01816940307617, &quot;close&quot;: 53.13100051879883}, {&quot;time&quot;: 1704888000, &quot;open&quot;: 53.615997314453125, &quot;high&quot;: 54.599998474121094, &quot;low&quot;: 53.4890022277832, &quot;close&quot;: 54.31049728393555}, {&quot;time&quot;: 1704902400, &quot;open&quot;: 54.31450271606445, &quot;high&quot;: 54.47999954223633, &quot;low&quot;: 53.9849967956543, &quot;close&quot;: 54.21149826049805}, {&quot;time&quot;: 1704916800, &quot;open&quot;: 54.20800018310547, &quot;high&quot;: 54.365997314453125, &quot;low&quot;: 53.95200729370117, &quot;close&quot;: 54.349998474121094}, {&quot;time&quot;: 1704974400, &quot;open&quot;: 54.999000549316406, &quot;high&quot;: 55.34600067138672, &quot;low&quot;: 53.55999755859375, &quot;close&quot;: 53.855010986328125}, {&quot;time&quot;: 1704988800, &quot;open&quot;: 53.849998474121094, &quot;high&quot;: 55.20000076293945, &quot;low&quot;: 53.60599899291992, &quot;close&quot;: 54.87662887573242}, {&quot;time&quot;: 1705003200, &quot;open&quot;: 54.875, &quot;high&quot;: 54.91804122924805, &quot;low&quot;: 54.600013732910156, &quot;close&quot;: 54.82999801635742}, {&quot;time&quot;: 1705060800, &quot;open&quot;: 54.62000274658203, &quot;high&quot;: 54.970001220703125, &quot;low&quot;: 54.330078125, &quot;close&quot;: 54.69501876831055}, {&quot;time&quot;: 1705075200, &quot;open&quot;: 54.699501037597656, &quot;high&quot;: 54.914268493652344, &quot;low&quot;: 54.4904899597168, &quot;close&quot;: 54.6250114440918}, {&quot;time&quot;: 1705089600, &quot;open&quot;: 54.6345100402832, &quot;high&quot;: 54.74799728393555, &quot;low&quot;: 54.57999801635742, &quot;close&quot;: 54.70800018310547}, {&quot;time&quot;: 1705406400, &quot;open&quot;: 55.099998474121094, &quot;high&quot;: 56.70000076293945, &quot;low&quot;: 55.053497314453125, &quot;close&quot;: 56.56928634643555}, {&quot;time&quot;: 1705420800, &quot;open&quot;: 56.58100128173828, &quot;high&quot;: 56.834991455078125, &quot;low&quot;: 56.025001525878906, &quot;close&quot;: 56.105377197265625}, {&quot;time&quot;: 1705435200, &quot;open&quot;: 56.10700225830078, &quot;high&quot;: 56.4010009765625, &quot;low&quot;: 56.03001022338867, &quot;close&quot;: 56.400001525878906}, {&quot;time&quot;: 1705492800, &quot;open&quot;: 56.34699630737305, &quot;high&quot;: 56.470680236816406, &quot;low&quot;: 54.7400016784668, &quot;close&quot;: 55.888999938964844}, {&quot;time&quot;: 1705507200, &quot;open&quot;: 55.89400100708008, &quot;high&quot;: 56.2760009765625, &quot;low&quot;: 55.5099983215332, &quot;close&quot;: 55.72150802612305}, {&quot;time&quot;: 1705521600, &quot;open&quot;: 55.73112106323242, &quot;high&quot;: 56.19099807739258, &quot;low&quot;: 55.67899703979492, &quot;close&quot;: 56.051002502441406}, {&quot;time&quot;: 1705579200, &quot;open&quot;: 57.2599983215332, &quot;high&quot;: 57.59400177001953, &quot;low&quot;: 56.88800048828125, &quot;close&quot;: 57.52100372314453}, {&quot;time&quot;: 1705593600, &quot;open&quot;: 57.52800369262695, &quot;high&quot;: 57.599998474121094, &quot;low&quot;: 56.10700225830078, &quot;close&quot;: 56.944000244140625}, {&quot;time&quot;: 1705608000, &quot;open&quot;: 56.95000076293945, &quot;high&quot;: 57.18499755859375, &quot;low&quot;: 56.840003967285156, &quot;close&quot;: 57.09821319580078}, {&quot;time&quot;: 1705665600, &quot;open&quot;: 57.9890022277832, &quot;high&quot;: 58.28200149536133, &quot;low&quot;: 57.224998474121094, &quot;close&quot;: 58.24199676513672}, {&quot;time&quot;: 1705680000, &quot;open&quot;: 58.24190139770508, &quot;high&quot;: 59.20600128173828, &quot;low&quot;: 58.17399978637695, &quot;close&quot;: 59.14600372314453}, {&quot;time&quot;: 1705694400, &quot;open&quot;: 59.14000701904297, &quot;high&quot;: 59.5, &quot;low&quot;: 59.0880012512207, &quot;close&quot;: 59.5}, {&quot;time&quot;: 1705924800, &quot;open&quot;: 59.75, &quot;high&quot;: 60.33100128173828, &quot;low&quot;: 59.06999969482422, &quot;close&quot;: 59.939537048339844}, {&quot;time&quot;: 1705939200, &quot;open&quot;: 59.93549728393555, &quot;high&quot;: 60.10499954223633, &quot;low&quot;: 59.569000244140625, &quot;close&quot;: 59.9844970703125}, {&quot;time&quot;: 1705953600, &quot;open&quot;: 59.98326873779297, &quot;high&quot;: 59.990997314453125, &quot;low&quot;: 59.650001525878906, &quot;close&quot;: 59.665000915527344}, {&quot;time&quot;: 1706011200, &quot;open&quot;: 59.56999969482422, &quot;high&quot;: 59.7299919128418, &quot;low&quot;: 58.584999084472656, &quot;close&quot;: 59.486000061035156}, {&quot;time&quot;: 1706025600, &quot;open&quot;: 59.49298858642578, &quot;high&quot;: 59.766998291015625, &quot;low&quot;: 59.29401397705078, &quot;close&quot;: 59.709999084472656}, {&quot;time&quot;: 1706040000, &quot;open&quot;: 59.7140007019043, &quot;high&quot;: 59.909996032714844, &quot;low&quot;: 59.628997802734375, &quot;close&quot;: 59.871002197265625}, {&quot;time&quot;: 1706097600, &quot;open&quot;: 60.30399703979492, &quot;high&quot;: 62.0099983215332, &quot;low&quot;: 59.9379997253418, &quot;close&quot;: 61.63800048828125}, {&quot;time&quot;: 1706112000, &quot;open&quot;: 61.63050079345703, &quot;high&quot;: 62.8489990234375, &quot;low&quot;: 61.209999084472656, &quot;close&quot;: 61.22700119018555}, {&quot;time&quot;: 1706126400, &quot;open&quot;: 61.228607177734375, &quot;high&quot;: 61.66899871826172, &quot;low&quot;: 61.17100143432617, &quot;close&quot;: 61.35700225830078}, {&quot;time&quot;: 1706184000, &quot;open&quot;: 62.150001525878906, &quot;high&quot;: 62.71900177001953, &quot;low&quot;: 61.85399627685547, &quot;close&quot;: 62.3900032043457}, {&quot;time&quot;: 1706198400, &quot;open&quot;: 62.3904914855957, &quot;high&quot;: 62.55999755859375, &quot;low&quot;: 60.91602325439453, &quot;close&quot;: 61.551002502441406}, {&quot;time&quot;: 1706212800, &quot;open&quot;: 61.548500061035156, &quot;high&quot;: 61.73099899291992, &quot;low&quot;: 61.4849967956543, &quot;close&quot;: 61.64400100708008}, {&quot;time&quot;: 1706270400, &quot;open&quot;: 60.959999084472656, &quot;high&quot;: 61.78300094604492, &quot;low&quot;: 60.572998046875, &quot;close&quot;: 61.374000549316406}, {&quot;time&quot;: 1706284800, &quot;open&quot;: 61.39099884033203, &quot;high&quot;: 61.5629997253418, &quot;low&quot;: 60.74300003051758, &quot;close&quot;: 61.08599853515625}, {&quot;time&quot;: 1706299200, &quot;open&quot;: 61.082000732421875, &quot;high&quot;: 61.139991760253906, &quot;low&quot;: 60.9218635559082, &quot;close&quot;: 61.029998779296875}, {&quot;time&quot;: 1706529600, &quot;open&quot;: 61.23200225830078, &quot;high&quot;: 61.875, &quot;low&quot;: 60.90700149536133, &quot;close&quot;: 61.464599609375}, {&quot;time&quot;: 1706544000, &quot;open&quot;: 61.46699905395508, &quot;high&quot;: 62.41599655151367, &quot;low&quot;: 61.37999725341797, &quot;close&quot;: 62.371253967285156}, {&quot;time&quot;: 1706558400, &quot;open&quot;: 62.37000274658203, &quot;high&quot;: 62.4890022277832, &quot;low&quot;: 62.2869987487793, &quot;close&quot;: 62.472999572753906}, {&quot;time&quot;: 1706616000, &quot;open&quot;: 62.900001525878906, &quot;high&quot;: 63.39899826049805, &quot;low&quot;: 62.540992736816406, &quot;close&quot;: 63.07899856567383}, {&quot;time&quot;: 1706630400, &quot;open&quot;: 63.07849884033203, &quot;high&quot;: 63.49300003051758, &quot;low&quot;: 62.2599983215332, &quot;close&quot;: 62.92960739135742}, {&quot;time&quot;: 1706644800, &quot;open&quot;: 62.93499755859375, &quot;high&quot;: 62.9900016784668, &quot;low&quot;: 62.654998779296875, &quot;close&quot;: 62.75300216674805}, {&quot;time&quot;: 1706702400, &quot;open&quot;: 61.44000244140625, &quot;high&quot;: 62.07500076293945, &quot;low&quot;: 60.70000076293945, &quot;close&quot;: 61.28900146484375}, {&quot;time&quot;: 1706716800, &quot;open&quot;: 61.30699920654297, &quot;high&quot;: 62.269020080566406, &quot;low&quot;: 61.13300323486328, &quot;close&quot;: 61.7130012512207}, {&quot;time&quot;: 1706731200, &quot;open&quot;: 61.715003967285156, &quot;high&quot;: 61.7400016784668, &quot;low&quot;: 61.349998474121094, &quot;close&quot;: 61.500999450683594}, {&quot;time&quot;: 1706788800, &quot;open&quot;: 62.099998474121094, &quot;high&quot;: 62.48200225830078, &quot;low&quot;: 61.650001525878906, &quot;close&quot;: 61.912559509277344}, {&quot;time&quot;: 1706803200, &quot;open&quot;: 61.926002502441406, &quot;high&quot;: 63.113990783691406, &quot;low&quot;: 61.819000244140625, &quot;close&quot;: 63.09450149536133}, {&quot;time&quot;: 1706817600, &quot;open&quot;: 63.09600067138672, &quot;high&quot;: 63.19099807739258, &quot;low&quot;: 62.86800003051758, &quot;close&quot;: 63.034996032714844}, {&quot;time&quot;: 1706875200, &quot;open&quot;: 63.79999923706055, &quot;high&quot;: 65.43599700927734, &quot;low&quot;: 63.69000244140625, &quot;close&quot;: 65.39240264892578}, {&quot;time&quot;: 1706889600, &quot;open&quot;: 65.4000015258789, &quot;high&quot;: 66.5999984741211, &quot;low&quot;: 65.38690185546875, &quot;close&quot;: 66.0885009765625}, {&quot;time&quot;: 1706904000, &quot;open&quot;: 66.08799743652344, &quot;high&quot;: 66.2750015258789, &quot;low&quot;: 66.0, &quot;close&quot;: 66.1500015258789}], &quot;fvg_lines&quot;: [{&quot;price&quot;: 65.71799850463867, &quot;color&quot;: &quot;#ffeb3b&quot;, &quot;title&quot;: &quot;BULL GAP&quot;, &quot;start_time&quot;: 1706889600, &quot;end_time&quot;: 1706904000}, {&quot;price&quot;: 64.28894996643066, &quot;color&quot;: &quot;#ffeb3b&quot;, &quot;title&quot;: &quot;BULL GAP&quot;, &quot;start_time&quot;: 1706875200, &quot;end_time&quot;: 1706904000}], &quot;level_lines&quot;: [{&quot;price&quot;: 66.2750015258789, &quot;color&quot;: &quot;#ef5350&quot;, &quot;title&quot;: &quot;Recent High (Res)&quot;, &quot;lineWidth&quot;: 1, &quot;lineStyle&quot;: 2, &quot;axisLabelVisible&quot;: true}, {&quot;price&quot;: 60.63649940490723, &quot;color&quot;: &quot;#26a69a&quot;, &quot;title&quot;: &quot;EQL (Sup)&quot;, &quot;lineWidth&quot;: 1, &quot;lineStyle&quot;: 2, &quot;axisLabelVisible&quot;: true}], &quot;trade_lines&quot;: [{&quot;price&quot;: 66.0, &quot;color&quot;: &quot;#4caf50&quot;, &quot;title&quot;: &quot;ENTRY&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 64.78163703918457, &quot;color&quot;: &quot;#ef5350&quot;, &quot;title&quot;: &quot;STOP&quot;, &quot;style&quot;: 0}, {&quot;price&quot;: 67.32000000000001, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP1&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 68.43672592163085, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP2&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 69.65508888244628, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP3&quot;, &quot;style&quot;: 2}], &quot;earnings_vwap&quot;: [], &quot;symbol&quot;: &quot;NVDA&quot;, &quot;width&quot;: 800, &quot;height&quot;: 600};
+                    
+                    if (!data.candles || data.candles.length === 0) {
+                        document.getElementById('chart-container').innerHTML = '<div style=&quot;color:white;text-align:center;padding:20px;&quot;>No candle data available</div>';
+                        throw new Error(&quot;No data&quot;);
+                    }
+
+                    const chartContainer = document.getElementById('chart-container');
+                    const chart = LightweightCharts.createChart(chartContainer, {
+                        layout: { background: { type: 'solid', color: '#0a0a0a' }, textColor: '#d1d4dc' },
+                        grid: { vertLines: { color: '#1f2937' }, horzLines: { color: '#1f2937' } },
+                        rightPriceScale: { borderColor: '#363c4e' },
+                        timeScale: { borderColor: '#363c4e', timeVisible: true },
+                        crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+                    });
+                    
+                    // Candle Series
+                    const candlestickSeries = chart.addCandlestickSeries({
+                        upColor: '#26a69a', downColor: '#ef5350', borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350'
+                    });
+                    candlestickSeries.setData(data.candles);
+
+                    // Markers (Text for Lines)
+                    const markers = [];
+                    
+                    // FVG Areas
+                    if (data.fvg_lines) {
+                        data.fvg_lines.forEach(line => {
+                            const fvgSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: false,
+                                lastValueVisible: true,
+                                title: line.title,
+                                crosshairMarkerVisible: true
+                            });
+                            
+                            const lineData = [];
+                            data.candles.forEach(c => {
+                                if (c.time >= line.start_time) {
+                                    lineData.push({ time: c.time, value: line.price });
+                                }
+                            });
+                            if (lineData.length > 0) fvgSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Set Markers
+                    candlestickSeries.setMarkers(markers);
+
+                    // Key Levels
+                    if (data.level_lines) {
+                        data.level_lines.forEach(line => {
+                            const levelSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: line.lineWidth || 1,
+                                lineStyle: line.lineStyle || LightweightCharts.LineStyle.Dashed,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                             
+                            const lineData = data.candles.map(c => ({ time: c.time, value: line.price }));
+                            levelSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Trade Plan Lines
+                    if (data.trade_lines) {
+                        data.trade_lines.forEach(line => {
+                            const tradeSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: line.style === 2 ? LightweightCharts.LineStyle.Dashed : LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                            
+                            const recentCandles = data.candles.slice(-100);
+                            const lineData = recentCandles.map(c => ({ time: c.time, value: line.price }));
+                            tradeSeries.setData(lineData);
+                        });
+                    }
+
+                    // Earnings VWAP
+                    if (data.earnings_vwap && data.earnings_vwap.length > 0) {
+                        const vwapSeries = chart.addLineSeries({
+                            color: '#b39ddb',
+                            lineWidth: 2,
+                            lineStyle: LightweightCharts.LineStyle.Solid,
+                            title: 'Earnings VWAP',
+                            priceLineVisible: false
+                        });
+                        vwapSeries.setData(data.earnings_vwap);
+                    }
+                    
+                    // Set visible range safely
+                    const lastTime = data.candles[data.candles.length - 1].time;
+                    const startTime = data.candles[Math.max(0, data.candles.length - 100)].time;
+                    chart.timeScale().setVisibleRange({ from: startTime, to: lastTime });
+                    
+                    // Resizing
+                    window.addEventListener('resize', () => {
+                        chart.resize(chartContainer.clientWidth, chartContainer.clientHeight);
+                    });
+                    
+                } catch (e) {
+                    console.error(&quot;Chart Error:&quot;, e);
+                    document.body.innerHTML += '<div style=&quot;position:absolute;top:10px;left:10px;color:red;background:rgba(0,0,0,0.8);padding:10px;&quot;>JS Error: ' + e.message + '</div>';
+                }
+            </script>
+        </body>
+        </html>
+        "></iframe>
+    </div>
+    
+    <div class="panel">
+        <div class="panel-header">📈 OUTCOME (+30 days)</div>
+        <iframe srcdoc="
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>NVDA ICT Analysis</title>
+            <script src=&quot;https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js&quot;></script>
+            <style>
+                body { background: #0a0a0a; color: #d1d4dc; font-family: -apple-system, sans-serif; margin: 0; display: flex; height: 100vh; }
+                #chart-container { flex: 1; position: relative; }
+                #sidebar { width: 280px; background: #1a1a2e; padding: 20px; border-left: 1px solid #363c4e; overflow-y: auto; box-shadow: -2px 0 10px rgba(0,0,0,0.3); }
+                h2 { color: #2196f3; margin-top: 0; font-size: 20px; }
+                h3 { color: #a0a0a0; font-size: 14px; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #363c4e; padding-bottom: 5px; }
+                .stat-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+                .bullish { color: #4caf50; }
+                .bearish { color: #ef5350; }
+                .legend { position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 24px; font-weight: bold; color: rgba(255, 255, 255, 0.7); }
+            </style>
+        </head>
+        <body>
+            <div id=&quot;chart-container&quot;>
+                <div class=&quot;legend&quot;>NVDA 4H</div>
+            </div>
+            
+            <div id=&quot;sidebar&quot;>
+                <h2>📊 Analysis Summary</h2>
+                <div style=&quot;font-size: 13px; line-height: 1.6;&quot;>
+                    🔴 RESISTANCE (Swing) @ $82.39<br>✅ BULL GAP below @ $80.71<br>🟢 SUPPORT (EQL) @ $66.27
+        <div style=&quot;margin-top: 15px; border-top: 1px solid #363c4e; padding-top: 10px;&quot;>
+            <h3 style=&quot;color: #4caf50; margin-bottom: 5px;&quot;>🚀 BULLISH SETUP</h3>
+            <div style=&quot;font-size: 13px; color: #d1d4dc;&quot;>
+                <div><strong>Entry:</strong> <span style=&quot;color: #4caf50;&quot;>$81.43</span> (Limit Buy (FVG))</div>
+                <div><strong>Stop Loss:</strong> <span style=&quot;color: #ef5350;&quot;>$79.19</span></div>
+                <div style=&quot;margin-top: 5px;&quot;><strong>Targets:</strong></div>
+                <div>🎯 TP1: <span style=&quot;color: #2196f3;&quot;>$83.05</span></div>
+                <div>🎯 TP2: <span style=&quot;color: #2196f3;&quot;>$85.90</span></div>
+                <div>🚀 TP3: <span style=&quot;color: #2196f3;&quot;>$88.13</span></div>
+            </div>
+        </div>
+        
+                </div>
+                
+                <h3>Key Levels Found</h3>
+                <div class=&quot;stat-item&quot;>
+                    <span>Fair Value Gaps:</span>
+                    <span>33</span>
+                </div>
+                <div class=&quot;stat-item&quot;>
+                    <span>EQH/EQL Zones:</span>
+                    <span>5</span>
+                </div>
+                
+            </div>
+
+            <script>
+                try {
+                    const data = {&quot;candles&quot;: [{&quot;time&quot;: 1702468800, &quot;open&quot;: 47.62900161743164, &quot;high&quot;: 48.59400177001953, &quot;low&quot;: 47.60799789428711, &quot;close&quot;: 48.275001525878906}, {&quot;time&quot;: 1702483200, &quot;open&quot;: 48.28049850463867, &quot;high&quot;: 48.53200149536133, &quot;low&quot;: 47.779998779296875, &quot;close&quot;: 47.98299789428711}, {&quot;time&quot;: 1702497600, &quot;open&quot;: 47.98250198364258, &quot;high&quot;: 48.12699890136719, &quot;low&quot;: 47.928001403808594, &quot;close&quot;: 48.09000015258789}, {&quot;time&quot;: 1702555200, &quot;open&quot;: 48.474998474121094, &quot;high&quot;: 48.67000198364258, &quot;low&quot;: 47.888999938964844, &quot;close&quot;: 48.20738983154297}, {&quot;time&quot;: 1702569600, &quot;open&quot;: 48.20750045776367, &quot;high&quot;: 48.29999923706055, &quot;low&quot;: 47.422000885009766, &quot;close&quot;: 48.12000274658203}, {&quot;time&quot;: 1702584000, &quot;open&quot;: 48.11101150512695, &quot;high&quot;: 48.349998474121094, &quot;low&quot;: 48.11101150512695, &quot;close&quot;: 48.349998474121094}, {&quot;time&quot;: 1702641600, &quot;open&quot;: 48.400001525878906, &quot;high&quot;: 49.40399932861328, &quot;low&quot;: 48.382999420166016, &quot;close&quot;: 49.13100051879883}, {&quot;time&quot;: 1702656000, &quot;open&quot;: 49.13399887084961, &quot;high&quot;: 49.292999267578125, &quot;low&quot;: 48.849998474121094, &quot;close&quot;: 48.96500015258789}, {&quot;time&quot;: 1702670400, &quot;open&quot;: 48.96500015258789, &quot;high&quot;: 49.066001892089844, &quot;low&quot;: 48.88399887084961, &quot;close&quot;: 48.944000244140625}, {&quot;time&quot;: 1702900800, &quot;open&quot;: 49.400001525878906, &quot;high&quot;: 50.0, &quot;low&quot;: 49.150001525878906, &quot;close&quot;: 49.79500198364258}, {&quot;time&quot;: 1702915200, &quot;open&quot;: 49.79100036621094, &quot;high&quot;: 50.400001525878906, &quot;low&quot;: 49.720008850097656, &quot;close&quot;: 50.39400100708008}, {&quot;time&quot;: 1702929600, &quot;open&quot;: 50.400001525878906, &quot;high&quot;: 50.43299102783203, &quot;low&quot;: 50.0629997253418, &quot;close&quot;: 50.08100128173828}, {&quot;time&quot;: 1702987200, &quot;open&quot;: 49.42399978637695, &quot;high&quot;: 49.70000076293945, &quot;low&quot;: 48.89500045776367, &quot;close&quot;: 49.13750076293945}, {&quot;time&quot;: 1703001600, &quot;open&quot;: 49.137001037597656, &quot;high&quot;: 49.584999084472656, &quot;low&quot;: 49.060001373291016, &quot;close&quot;: 49.5}, {&quot;time&quot;: 1703016000, &quot;open&quot;: 49.499000549316406, &quot;high&quot;: 49.617000579833984, &quot;low&quot;: 49.439998626708984, &quot;close&quot;: 49.61289978027344}, {&quot;time&quot;: 1703073600, &quot;open&quot;: 49.654998779296875, &quot;high&quot;: 49.999000549316406, &quot;low&quot;: 49.4630012512207, &quot;close&quot;: 49.8120002746582}, {&quot;time&quot;: 1703088000, &quot;open&quot;: 49.81050109863281, &quot;high&quot;: 49.875, &quot;low&quot;: 48.2609977722168, &quot;close&quot;: 48.362998962402344}, {&quot;time&quot;: 1703102400, &quot;open&quot;: 48.37200164794922, &quot;high&quot;: 48.49800109863281, &quot;low&quot;: 48.097999572753906, &quot;close&quot;: 48.11000061035156}, {&quot;time&quot;: 1703160000, &quot;open&quot;: 48.810997009277344, &quot;high&quot;: 49.095001220703125, &quot;low&quot;: 48.50400161743164, &quot;close&quot;: 48.7130012512207}, {&quot;time&quot;: 1703174400, &quot;open&quot;: 48.71500015258789, &quot;high&quot;: 48.935997009277344, &quot;low&quot;: 48.41899871826172, &quot;close&quot;: 48.91600036621094}, {&quot;time&quot;: 1703188800, &quot;open&quot;: 48.91899871826172, &quot;high&quot;: 49.045989990234375, &quot;low&quot;: 48.87300109863281, &quot;close&quot;: 48.99700164794922}, {&quot;time&quot;: 1703246400, &quot;open&quot;: 49.19499969482422, &quot;high&quot;: 49.382999420166016, &quot;low&quot;: 48.917999267578125, &quot;close&quot;: 49.04500198364258}, {&quot;time&quot;: 1703260800, &quot;open&quot;: 49.04199981689453, &quot;high&quot;: 49.14800262451172, &quot;low&quot;: 48.467002868652344, &quot;close&quot;: 48.8120002746582}, {&quot;time&quot;: 1703275200, &quot;open&quot;: 48.813499450683594, &quot;high&quot;: 48.834999084472656, &quot;low&quot;: 48.66400146484375, &quot;close&quot;: 48.82699966430664}, {&quot;time&quot;: 1703592000, &quot;open&quot;: 48.96799850463867, &quot;high&quot;: 49.599998474121094, &quot;low&quot;: 48.95000076293945, &quot;close&quot;: 49.32500076293945}, {&quot;time&quot;: 1703606400, &quot;open&quot;: 49.32500076293945, &quot;high&quot;: 49.48699951171875, &quot;low&quot;: 49.26499938964844, &quot;close&quot;: 49.45199966430664}, {&quot;time&quot;: 1703620800, &quot;open&quot;: 49.45199966430664, &quot;high&quot;: 49.47853088378906, &quot;low&quot;: 49.26499938964844, &quot;close&quot;: 49.28099822998047}, {&quot;time&quot;: 1703678400, &quot;open&quot;: 49.5109977722168, &quot;high&quot;: 49.68000030517578, &quot;low&quot;: 49.084999084472656, &quot;close&quot;: 49.36227035522461}, {&quot;time&quot;: 1703692800, &quot;open&quot;: 49.361000061035156, &quot;high&quot;: 49.507999420166016, &quot;low&quot;: 49.282752990722656, &quot;close&quot;: 49.3738899230957}, {&quot;time&quot;: 1703707200, &quot;open&quot;: 49.37799072265625, &quot;high&quot;: 49.435001373291016, &quot;low&quot;: 49.323001861572266, &quot;close&quot;: 49.420997619628906}, {&quot;time&quot;: 1703764800, &quot;open&quot;: 49.64299774169922, &quot;high&quot;: 49.8489990234375, &quot;low&quot;: 49.4119987487793, &quot;close&quot;: 49.65903854370117}, {&quot;time&quot;: 1703779200, &quot;open&quot;: 49.665000915527344, &quot;high&quot;: 49.88399124145508, &quot;low&quot;: 49.470001220703125, &quot;close&quot;: 49.52436065673828}, {&quot;time&quot;: 1703793600, &quot;open&quot;: 49.52450942993164, &quot;high&quot;: 49.70600128173828, &quot;low&quot;: 49.474998474121094, &quot;close&quot;: 49.52000045776367}, {&quot;time&quot;: 1703851200, &quot;open&quot;: 49.8129997253418, &quot;high&quot;: 49.99700164794922, &quot;low&quot;: 48.750999450683594, &quot;close&quot;: 48.8120002746582}, {&quot;time&quot;: 1703865600, &quot;open&quot;: 48.80799865722656, &quot;high&quot;: 49.95000076293945, &quot;low&quot;: 48.790000915527344, &quot;close&quot;: 49.73400115966797}, {&quot;time&quot;: 1703880000, &quot;open&quot;: 49.73299789428711, &quot;high&quot;: 49.77000045776367, &quot;low&quot;: 49.44599914550781, &quot;close&quot;: 49.5260009765625}, {&quot;time&quot;: 1704196800, &quot;open&quot;: 49.125, &quot;high&quot;: 49.266502380371094, &quot;low&quot;: 47.595001220703125, &quot;close&quot;: 48.11602020263672}, {&quot;time&quot;: 1704211200, &quot;open&quot;: 48.11750030517578, &quot;high&quot;: 48.347999572753906, &quot;low&quot;: 47.820011138916016, &quot;close&quot;: 47.88399887084961}, {&quot;time&quot;: 1704225600, &quot;open&quot;: 47.8859977722168, &quot;high&quot;: 48.20800018310547, &quot;low&quot;: 47.777000427246094, &quot;close&quot;: 48.185001373291016}, {&quot;time&quot;: 1704283200, &quot;open&quot;: 47.45000076293945, &quot;high&quot;: 48.18410110473633, &quot;low&quot;: 47.31999969482422, &quot;close&quot;: 47.751502990722656}, {&quot;time&quot;: 1704297600, &quot;open&quot;: 47.75040054321289, &quot;high&quot;: 47.87900161743164, &quot;low&quot;: 47.44499969482422, &quot;close&quot;: 47.652000427246094}, {&quot;time&quot;: 1704312000, &quot;open&quot;: 47.64896011352539, &quot;high&quot;: 47.74700164794922, &quot;low&quot;: 47.45000076293945, &quot;close&quot;: 47.56999969482422}, {&quot;time&quot;: 1704369600, &quot;open&quot;: 47.76700210571289, &quot;high&quot;: 48.4010009765625, &quot;low&quot;: 47.507999420166016, &quot;close&quot;: 48.305660247802734}, {&quot;time&quot;: 1704384000, &quot;open&quot;: 48.303009033203125, &quot;high&quot;: 48.5, &quot;low&quot;: 48.053001403808594, &quot;close&quot;: 48.19586944580078}, {&quot;time&quot;: 1704398400, &quot;open&quot;: 48.189998626708984, &quot;high&quot;: 48.26000213623047, &quot;low&quot;: 47.97999954223633, &quot;close&quot;: 47.99399948120117}, {&quot;time&quot;: 1704456000, &quot;open&quot;: 48.461997985839844, &quot;high&quot;: 49.547000885009766, &quot;low&quot;: 48.306007385253906, &quot;close&quot;: 49.38750076293945}, {&quot;time&quot;: 1704470400, &quot;open&quot;: 49.38999938964844, &quot;high&quot;: 49.4379997253418, &quot;low&quot;: 48.78302001953125, &quot;close&quot;: 48.868499755859375}, {&quot;time&quot;: 1704484800, &quot;open&quot;: 48.86199951171875, &quot;high&quot;: 49.10300064086914, &quot;low&quot;: 48.80500030517578, &quot;close&quot;: 49.09000015258789}, {&quot;time&quot;: 1704715200, &quot;open&quot;: 49.512001037597656, &quot;high&quot;: 51.572998046875, &quot;low&quot;: 49.479000091552734, &quot;close&quot;: 51.28200149536133}, {&quot;time&quot;: 1704729600, &quot;open&quot;: 51.28685760498047, &quot;high&quot;: 51.89799880981445, &quot;low&quot;: 51.10300064086914, &quot;close&quot;: 51.8703498840332}, {&quot;time&quot;: 1704744000, &quot;open&quot;: 51.86899948120117, &quot;high&quot;: 52.275001525878906, &quot;low&quot;: 51.81599807739258, &quot;close&quot;: 52.25499725341797}, {&quot;time&quot;: 1704801600, &quot;open&quot;: 52.4010009765625, &quot;high&quot;: 52.9010009765625, &quot;low&quot;: 51.69000244140625, &quot;close&quot;: 52.8599967956543}, {&quot;time&quot;: 1704816000, &quot;open&quot;: 52.85240936279297, &quot;high&quot;: 54.32500076293945, &quot;low&quot;: 52.7706298828125, &quot;close&quot;: 53.5584716796875}, {&quot;time&quot;: 1704830400, &quot;open&quot;: 53.55399703979492, &quot;high&quot;: 53.65700149536133, &quot;low&quot;: 53.01816940307617, &quot;close&quot;: 53.13100051879883}, {&quot;time&quot;: 1704888000, &quot;open&quot;: 53.615997314453125, &quot;high&quot;: 54.599998474121094, &quot;low&quot;: 53.4890022277832, &quot;close&quot;: 54.31049728393555}, {&quot;time&quot;: 1704902400, &quot;open&quot;: 54.31450271606445, &quot;high&quot;: 54.47999954223633, &quot;low&quot;: 53.9849967956543, &quot;close&quot;: 54.21149826049805}, {&quot;time&quot;: 1704916800, &quot;open&quot;: 54.20800018310547, &quot;high&quot;: 54.365997314453125, &quot;low&quot;: 53.95200729370117, &quot;close&quot;: 54.349998474121094}, {&quot;time&quot;: 1704974400, &quot;open&quot;: 54.999000549316406, &quot;high&quot;: 55.34600067138672, &quot;low&quot;: 53.55999755859375, &quot;close&quot;: 53.855010986328125}, {&quot;time&quot;: 1704988800, &quot;open&quot;: 53.849998474121094, &quot;high&quot;: 55.20000076293945, &quot;low&quot;: 53.60599899291992, &quot;close&quot;: 54.87662887573242}, {&quot;time&quot;: 1705003200, &quot;open&quot;: 54.875, &quot;high&quot;: 54.91804122924805, &quot;low&quot;: 54.600013732910156, &quot;close&quot;: 54.82999801635742}, {&quot;time&quot;: 1705060800, &quot;open&quot;: 54.62000274658203, &quot;high&quot;: 54.970001220703125, &quot;low&quot;: 54.330078125, &quot;close&quot;: 54.69501876831055}, {&quot;time&quot;: 1705075200, &quot;open&quot;: 54.699501037597656, &quot;high&quot;: 54.914268493652344, &quot;low&quot;: 54.4904899597168, &quot;close&quot;: 54.6250114440918}, {&quot;time&quot;: 1705089600, &quot;open&quot;: 54.6345100402832, &quot;high&quot;: 54.74799728393555, &quot;low&quot;: 54.57999801635742, &quot;close&quot;: 54.70800018310547}, {&quot;time&quot;: 1705406400, &quot;open&quot;: 55.099998474121094, &quot;high&quot;: 56.70000076293945, &quot;low&quot;: 55.053497314453125, &quot;close&quot;: 56.56928634643555}, {&quot;time&quot;: 1705420800, &quot;open&quot;: 56.58100128173828, &quot;high&quot;: 56.834991455078125, &quot;low&quot;: 56.025001525878906, &quot;close&quot;: 56.105377197265625}, {&quot;time&quot;: 1705435200, &quot;open&quot;: 56.10700225830078, &quot;high&quot;: 56.4010009765625, &quot;low&quot;: 56.03001022338867, &quot;close&quot;: 56.400001525878906}, {&quot;time&quot;: 1705492800, &quot;open&quot;: 56.34699630737305, &quot;high&quot;: 56.470680236816406, &quot;low&quot;: 54.7400016784668, &quot;close&quot;: 55.888999938964844}, {&quot;time&quot;: 1705507200, &quot;open&quot;: 55.89400100708008, &quot;high&quot;: 56.2760009765625, &quot;low&quot;: 55.5099983215332, &quot;close&quot;: 55.72150802612305}, {&quot;time&quot;: 1705521600, &quot;open&quot;: 55.73112106323242, &quot;high&quot;: 56.19099807739258, &quot;low&quot;: 55.67899703979492, &quot;close&quot;: 56.051002502441406}, {&quot;time&quot;: 1705579200, &quot;open&quot;: 57.2599983215332, &quot;high&quot;: 57.59400177001953, &quot;low&quot;: 56.88800048828125, &quot;close&quot;: 57.52100372314453}, {&quot;time&quot;: 1705593600, &quot;open&quot;: 57.52800369262695, &quot;high&quot;: 57.599998474121094, &quot;low&quot;: 56.10700225830078, &quot;close&quot;: 56.944000244140625}, {&quot;time&quot;: 1705608000, &quot;open&quot;: 56.95000076293945, &quot;high&quot;: 57.18499755859375, &quot;low&quot;: 56.840003967285156, &quot;close&quot;: 57.09821319580078}, {&quot;time&quot;: 1705665600, &quot;open&quot;: 57.9890022277832, &quot;high&quot;: 58.28200149536133, &quot;low&quot;: 57.224998474121094, &quot;close&quot;: 58.24199676513672}, {&quot;time&quot;: 1705680000, &quot;open&quot;: 58.24190139770508, &quot;high&quot;: 59.20600128173828, &quot;low&quot;: 58.17399978637695, &quot;close&quot;: 59.14600372314453}, {&quot;time&quot;: 1705694400, &quot;open&quot;: 59.14000701904297, &quot;high&quot;: 59.5, &quot;low&quot;: 59.0880012512207, &quot;close&quot;: 59.5}, {&quot;time&quot;: 1705924800, &quot;open&quot;: 59.75, &quot;high&quot;: 60.33100128173828, &quot;low&quot;: 59.06999969482422, &quot;close&quot;: 59.939537048339844}, {&quot;time&quot;: 1705939200, &quot;open&quot;: 59.93549728393555, &quot;high&quot;: 60.10499954223633, &quot;low&quot;: 59.569000244140625, &quot;close&quot;: 59.9844970703125}, {&quot;time&quot;: 1705953600, &quot;open&quot;: 59.98326873779297, &quot;high&quot;: 59.990997314453125, &quot;low&quot;: 59.650001525878906, &quot;close&quot;: 59.665000915527344}, {&quot;time&quot;: 1706011200, &quot;open&quot;: 59.56999969482422, &quot;high&quot;: 59.7299919128418, &quot;low&quot;: 58.584999084472656, &quot;close&quot;: 59.486000061035156}, {&quot;time&quot;: 1706025600, &quot;open&quot;: 59.49298858642578, &quot;high&quot;: 59.766998291015625, &quot;low&quot;: 59.29401397705078, &quot;close&quot;: 59.709999084472656}, {&quot;time&quot;: 1706040000, &quot;open&quot;: 59.7140007019043, &quot;high&quot;: 59.909996032714844, &quot;low&quot;: 59.628997802734375, &quot;close&quot;: 59.871002197265625}, {&quot;time&quot;: 1706097600, &quot;open&quot;: 60.30399703979492, &quot;high&quot;: 62.0099983215332, &quot;low&quot;: 59.9379997253418, &quot;close&quot;: 61.63800048828125}, {&quot;time&quot;: 1706112000, &quot;open&quot;: 61.63050079345703, &quot;high&quot;: 62.8489990234375, &quot;low&quot;: 61.209999084472656, &quot;close&quot;: 61.22700119018555}, {&quot;time&quot;: 1706126400, &quot;open&quot;: 61.228607177734375, &quot;high&quot;: 61.66899871826172, &quot;low&quot;: 61.17100143432617, &quot;close&quot;: 61.35700225830078}, {&quot;time&quot;: 1706184000, &quot;open&quot;: 62.150001525878906, &quot;high&quot;: 62.71900177001953, &quot;low&quot;: 61.85399627685547, &quot;close&quot;: 62.3900032043457}, {&quot;time&quot;: 1706198400, &quot;open&quot;: 62.3904914855957, &quot;high&quot;: 62.55999755859375, &quot;low&quot;: 60.91602325439453, &quot;close&quot;: 61.551002502441406}, {&quot;time&quot;: 1706212800, &quot;open&quot;: 61.548500061035156, &quot;high&quot;: 61.73099899291992, &quot;low&quot;: 61.4849967956543, &quot;close&quot;: 61.64400100708008}, {&quot;time&quot;: 1706270400, &quot;open&quot;: 60.959999084472656, &quot;high&quot;: 61.78300094604492, &quot;low&quot;: 60.572998046875, &quot;close&quot;: 61.374000549316406}, {&quot;time&quot;: 1706284800, &quot;open&quot;: 61.39099884033203, &quot;high&quot;: 61.5629997253418, &quot;low&quot;: 60.74300003051758, &quot;close&quot;: 61.08599853515625}, {&quot;time&quot;: 1706299200, &quot;open&quot;: 61.082000732421875, &quot;high&quot;: 61.139991760253906, &quot;low&quot;: 60.9218635559082, &quot;close&quot;: 61.029998779296875}, {&quot;time&quot;: 1706529600, &quot;open&quot;: 61.23200225830078, &quot;high&quot;: 61.875, &quot;low&quot;: 60.90700149536133, &quot;close&quot;: 61.464599609375}, {&quot;time&quot;: 1706544000, &quot;open&quot;: 61.46699905395508, &quot;high&quot;: 62.41599655151367, &quot;low&quot;: 61.37999725341797, &quot;close&quot;: 62.371253967285156}, {&quot;time&quot;: 1706558400, &quot;open&quot;: 62.37000274658203, &quot;high&quot;: 62.4890022277832, &quot;low&quot;: 62.2869987487793, &quot;close&quot;: 62.472999572753906}, {&quot;time&quot;: 1706616000, &quot;open&quot;: 62.900001525878906, &quot;high&quot;: 63.39899826049805, &quot;low&quot;: 62.540992736816406, &quot;close&quot;: 63.07899856567383}, {&quot;time&quot;: 1706630400, &quot;open&quot;: 63.07849884033203, &quot;high&quot;: 63.49300003051758, &quot;low&quot;: 62.2599983215332, &quot;close&quot;: 62.92960739135742}, {&quot;time&quot;: 1706644800, &quot;open&quot;: 62.93499755859375, &quot;high&quot;: 62.9900016784668, &quot;low&quot;: 62.654998779296875, &quot;close&quot;: 62.75300216674805}, {&quot;time&quot;: 1706702400, &quot;open&quot;: 61.44000244140625, &quot;high&quot;: 62.07500076293945, &quot;low&quot;: 60.70000076293945, &quot;close&quot;: 61.28900146484375}, {&quot;time&quot;: 1706716800, &quot;open&quot;: 61.30699920654297, &quot;high&quot;: 62.269020080566406, &quot;low&quot;: 61.13300323486328, &quot;close&quot;: 61.7130012512207}, {&quot;time&quot;: 1706731200, &quot;open&quot;: 61.715003967285156, &quot;high&quot;: 61.7400016784668, &quot;low&quot;: 61.349998474121094, &quot;close&quot;: 61.500999450683594}, {&quot;time&quot;: 1706788800, &quot;open&quot;: 62.099998474121094, &quot;high&quot;: 62.48200225830078, &quot;low&quot;: 61.650001525878906, &quot;close&quot;: 61.912559509277344}, {&quot;time&quot;: 1706803200, &quot;open&quot;: 61.926002502441406, &quot;high&quot;: 63.113990783691406, &quot;low&quot;: 61.819000244140625, &quot;close&quot;: 63.09450149536133}, {&quot;time&quot;: 1706817600, &quot;open&quot;: 63.09600067138672, &quot;high&quot;: 63.19099807739258, &quot;low&quot;: 62.86800003051758, &quot;close&quot;: 63.034996032714844}, {&quot;time&quot;: 1706875200, &quot;open&quot;: 63.79999923706055, &quot;high&quot;: 65.43599700927734, &quot;low&quot;: 63.69000244140625, &quot;close&quot;: 65.39240264892578}, {&quot;time&quot;: 1706889600, &quot;open&quot;: 65.4000015258789, &quot;high&quot;: 66.5999984741211, &quot;low&quot;: 65.38690185546875, &quot;close&quot;: 66.0885009765625}, {&quot;time&quot;: 1706904000, &quot;open&quot;: 66.08799743652344, &quot;high&quot;: 66.2750015258789, &quot;low&quot;: 66.0, &quot;close&quot;: 66.1500015258789}, {&quot;time&quot;: 1707134400, &quot;open&quot;: 67.69999694824219, &quot;high&quot;: 69.49699401855469, &quot;low&quot;: 67.20500183105469, &quot;close&quot;: 68.13899993896484}, {&quot;time&quot;: 1707148800, &quot;open&quot;: 68.13499450683594, &quot;high&quot;: 69.3499984741211, &quot;low&quot;: 68.0999984741211, &quot;close&quot;: 68.760009765625}, {&quot;time&quot;: 1707163200, &quot;open&quot;: 68.7645034790039, &quot;high&quot;: 69.4489974975586, &quot;low&quot;: 68.70100402832031, &quot;close&quot;: 69.31800079345703}, {&quot;time&quot;: 1707220800, &quot;open&quot;: 69.62999725341797, &quot;high&quot;: 69.75399017333984, &quot;low&quot;: 67.38499450683594, &quot;close&quot;: 67.96379089355469}, {&quot;time&quot;: 1707235200, &quot;open&quot;: 67.97000122070312, &quot;high&quot;: 68.47000122070312, &quot;low&quot;: 66.30000305175781, &quot;close&quot;: 68.15501403808594}, {&quot;time&quot;: 1707249600, &quot;open&quot;: 68.16450500488281, &quot;high&quot;: 68.40699768066406, &quot;low&quot;: 67.80999755859375, &quot;close&quot;: 68.21900177001953}, {&quot;time&quot;: 1707307200, &quot;open&quot;: 68.31900024414062, &quot;high&quot;: 69.4990005493164, &quot;low&quot;: 67.5999984741211, &quot;close&quot;: 68.8530044555664}, {&quot;time&quot;: 1707321600, &quot;open&quot;: 68.86199951171875, &quot;high&quot;: 70.197998046875, &quot;low&quot;: 68.80000305175781, &quot;close&quot;: 70.17598724365234}, {&quot;time&quot;: 1707336000, &quot;open&quot;: 70.17598724365234, &quot;high&quot;: 70.22000122070312, &quot;low&quot;: 69.94000244140625, &quot;close&quot;: 70.11599731445312}, {&quot;time&quot;: 1707393600, &quot;open&quot;: 70.0739974975586, &quot;high&quot;: 70.79399871826172, &quot;low&quot;: 69.45500183105469, &quot;close&quot;: 70.36830139160156}, {&quot;time&quot;: 1707408000, &quot;open&quot;: 70.37750244140625, &quot;high&quot;: 70.6500015258789, &quot;low&quot;: 69.70500183105469, &quot;close&quot;: 69.9000015258789}, {&quot;time&quot;: 1707422400, &quot;open&quot;: 69.90499877929688, &quot;high&quot;: 70.0, &quot;low&quot;: 69.55500030517578, &quot;close&quot;: 69.63999938964844}, {&quot;time&quot;: 1707480000, &quot;open&quot;: 70.53300476074219, &quot;high&quot;: 71.81400299072266, &quot;low&quot;: 70.21199798583984, &quot;close&quot;: 71.43449401855469}, {&quot;time&quot;: 1707494400, &quot;open&quot;: 71.447998046875, &quot;high&quot;: 72.05999755859375, &quot;low&quot;: 71.2719955444336, &quot;close&quot;: 71.93400573730469}, {&quot;time&quot;: 1707508800, &quot;open&quot;: 71.94000244140625, &quot;high&quot;: 72.18499755859375, &quot;low&quot;: 71.83000946044922, &quot;close&quot;: 72.13099670410156}, {&quot;time&quot;: 1707739200, &quot;open&quot;: 72.5999984741211, &quot;high&quot;: 74.19999694824219, &quot;low&quot;: 72.13999938964844, &quot;close&quot;: 74.04798126220703}, {&quot;time&quot;: 1707753600, &quot;open&quot;: 74.05084228515625, &quot;high&quot;: 74.61100006103516, &quot;low&quot;: 71.25, &quot;close&quot;: 72.54000091552734}, {&quot;time&quot;: 1707768000, &quot;open&quot;: 72.54019927978516, &quot;high&quot;: 72.68000030517578, &quot;low&quot;: 72.20399475097656, &quot;close&quot;: 72.29199981689453}, {&quot;time&quot;: 1707825600, &quot;open&quot;: 70.4000015258789, &quot;high&quot;: 73.44999694824219, &quot;low&quot;: 69.62000274658203, &quot;close&quot;: 73.09000396728516}, {&quot;time&quot;: 1707840000, &quot;open&quot;: 73.08979797363281, &quot;high&quot;: 73.12998962402344, &quot;low&quot;: 71.3499984741211, &quot;close&quot;: 71.61557006835938}, {&quot;time&quot;: 1707854400, &quot;open&quot;: 71.62326049804688, &quot;high&quot;: 72.19589233398438, &quot;low&quot;: 71.4229965209961, &quot;close&quot;: 72.19000244140625}, {&quot;time&quot;: 1707912000, &quot;open&quot;: 73.2020034790039, &quot;high&quot;: 74.23600006103516, &quot;low&quot;: 71.93800354003906, &quot;close&quot;: 72.51994323730469}, {&quot;time&quot;: 1707926400, &quot;open&quot;: 72.52201843261719, &quot;high&quot;: 73.47200012207031, &quot;low&quot;: 72.18699645996094, &quot;close&quot;: 73.39875030517578}, {&quot;time&quot;: 1707940800, &quot;open&quot;: 73.38999938964844, &quot;high&quot;: 73.90699768066406, &quot;low&quot;: 73.38300323486328, &quot;close&quot;: 73.85499572753906}, {&quot;time&quot;: 1707998400, &quot;open&quot;: 73.86900329589844, &quot;high&quot;: 73.9749984741211, &quot;low&quot;: 72.4000015258789, &quot;close&quot;: 73.12100219726562}, {&quot;time&quot;: 1708012800, &quot;open&quot;: 73.11799621582031, &quot;high&quot;: 73.375, &quot;low&quot;: 72.65999603271484, &quot;close&quot;: 72.8530044555664}, {&quot;time&quot;: 1708027200, &quot;open&quot;: 72.85900115966797, &quot;high&quot;: 72.93699645996094, &quot;low&quot;: 72.572998046875, &quot;close&quot;: 72.65699768066406}, {&quot;time&quot;: 1708084800, &quot;open&quot;: 74.0999984741211, &quot;high&quot;: 74.4020004272461, &quot;low&quot;: 72.50399780273438, &quot;close&quot;: 73.84000396728516}, {&quot;time&quot;: 1708099200, &quot;open&quot;: 73.86699676513672, &quot;high&quot;: 74.13700103759766, &quot;low&quot;: 73.01699829101562, &quot;close&quot;: 73.35600280761719}, {&quot;time&quot;: 1708113600, &quot;open&quot;: 73.35200500488281, &quot;high&quot;: 73.39204406738281, &quot;low&quot;: 72.5009994506836, &quot;close&quot;: 72.60050201416016}, {&quot;time&quot;: 1708430400, &quot;open&quot;: 71.5999984741211, &quot;high&quot;: 71.90599822998047, &quot;low&quot;: 67.90900421142578, &quot;close&quot;: 68.64299774169922}, {&quot;time&quot;: 1708444800, &quot;open&quot;: 68.61901092529297, &quot;high&quot;: 69.5989990234375, &quot;low&quot;: 67.73400115966797, &quot;close&quot;: 69.18560028076172}, {&quot;time&quot;: 1708459200, &quot;open&quot;: 69.19300079345703, &quot;high&quot;: 69.54199981689453, &quot;low&quot;: 68.94599914550781, &quot;close&quot;: 69.45700073242188}, {&quot;time&quot;: 1708516800, &quot;open&quot;: 68.0, &quot;high&quot;: 68.88800048828125, &quot;low&quot;: 67.70001220703125, &quot;close&quot;: 68.07099914550781}, {&quot;time&quot;: 1708531200, &quot;open&quot;: 68.08100128173828, &quot;high&quot;: 68.20800018310547, &quot;low&quot;: 66.24800109863281, &quot;close&quot;: 66.86949920654297}, {&quot;time&quot;: 1708545600, &quot;open&quot;: 66.88499450683594, &quot;high&quot;: 67.5999984741211, &quot;low&quot;: 66.82000732421875, &quot;close&quot;: 67.49500274658203}, {&quot;time&quot;: 1708603200, &quot;open&quot;: 74.80000305175781, &quot;high&quot;: 78.08499908447266, &quot;low&quot;: 74.22000122070312, &quot;close&quot;: 77.64600372314453}, {&quot;time&quot;: 1708617600, &quot;open&quot;: 77.6510009765625, &quot;high&quot;: 78.37699890136719, &quot;low&quot;: 77.05500030517578, &quot;close&quot;: 78.1729965209961}, {&quot;time&quot;: 1708632000, &quot;open&quot;: 78.17150115966797, &quot;high&quot;: 78.57499694824219, &quot;low&quot;: 78.02899932861328, &quot;close&quot;: 78.5270004272461}, {&quot;time&quot;: 1708689600, &quot;open&quot;: 80.79000091552734, &quot;high&quot;: 82.39399719238281, &quot;low&quot;: 77.56999969482422, &quot;close&quot;: 79.12800598144531}, {&quot;time&quot;: 1708704000, &quot;open&quot;: 79.13200378417969, &quot;high&quot;: 80.44400024414062, &quot;low&quot;: 78.6500015258789, &quot;close&quot;: 78.8239974975586}, {&quot;time&quot;: 1708718400, &quot;open&quot;: 78.8239974975586, &quot;high&quot;: 79.30999755859375, &quot;low&quot;: 78.68099975585938, &quot;close&quot;: 78.81599426269531}, {&quot;time&quot;: 1708948800, &quot;open&quot;: 80.0, &quot;high&quot;: 80.64598846435547, &quot;low&quot;: 78.50499725341797, &quot;close&quot;: 79.95405578613281}, {&quot;time&quot;: 1708963200, &quot;open&quot;: 79.95320129394531, &quot;high&quot;: 80.28604888916016, &quot;low&quot;: 78.79499816894531, &quot;close&quot;: 79.17999267578125}, {&quot;time&quot;: 1708977600, &quot;open&quot;: 79.1669692993164, &quot;high&quot;: 79.38600158691406, &quot;low&quot;: 79.04899597167969, &quot;close&quot;: 79.09110260009766}, {&quot;time&quot;: 1709035200, &quot;open&quot;: 79.19999694824219, &quot;high&quot;: 79.44000244140625, &quot;low&quot;: 77.16200256347656, &quot;close&quot;: 78.61000061035156}, {&quot;time&quot;: 1709049600, &quot;open&quot;: 78.60800170898438, &quot;high&quot;: 79.47999572753906, &quot;low&quot;: 78.55500030517578, &quot;close&quot;: 79.1030044555664}, {&quot;time&quot;: 1709064000, &quot;open&quot;: 79.1030044555664, &quot;high&quot;: 79.11698913574219, &quot;low&quot;: 78.69999694824219, &quot;close&quot;: 78.69999694824219}, {&quot;time&quot;: 1709121600, &quot;open&quot;: 77.62000274658203, &quot;high&quot;: 78.3270034790039, &quot;low&quot;: 77.125, &quot;close&quot;: 78.22894287109375}, {&quot;time&quot;: 1709136000, &quot;open&quot;: 78.24600219726562, &quot;high&quot;: 78.93299865722656, &quot;low&quot;: 77.9229965209961, &quot;close&quot;: 78.21500396728516}, {&quot;time&quot;: 1709150400, &quot;open&quot;: 78.20974731445312, &quot;high&quot;: 78.22078704833984, &quot;low&quot;: 77.5, &quot;close&quot;: 77.67900085449219}, {&quot;time&quot;: 1709208000, &quot;open&quot;: 79.25, &quot;high&quot;: 79.82999420166016, &quot;low&quot;: 78.82920837402344, &quot;close&quot;: 79.00199890136719}, {&quot;time&quot;: 1709222400, &quot;open&quot;: 79.0, &quot;high&quot;: 79.51399993896484, &quot;low&quot;: 78.3499984741211, &quot;close&quot;: 79.31300354003906}, {&quot;time&quot;: 1709236800, &quot;open&quot;: 79.32608032226562, &quot;high&quot;: 79.99000549316406, &quot;low&quot;: 78.9000015258789, &quot;close&quot;: 79.21800231933594}, {&quot;time&quot;: 1709294400, &quot;open&quot;: 80.11699676513672, &quot;high&quot;: 81.96400451660156, &quot;low&quot;: 79.43502807617188, &quot;close&quot;: 81.96400451660156}, {&quot;time&quot;: 1709308800, &quot;open&quot;: 81.9749984741211, &quot;high&quot;: 82.25900268554688, &quot;low&quot;: 81.4260025024414, &quot;close&quot;: 81.99800109863281}, {&quot;time&quot;: 1709323200, &quot;open&quot;: 81.99549865722656, &quot;high&quot;: 82.30000305175781, &quot;low&quot;: 81.83799743652344, &quot;close&quot;: 82.29299926757812}], &quot;fvg_lines&quot;: [{&quot;price&quot;: 80.70800399780273, &quot;color&quot;: &quot;#ffeb3b&quot;, &quot;title&quot;: &quot;BULL GAP&quot;, &quot;start_time&quot;: 1709294400, &quot;end_time&quot;: 1709323200}], &quot;level_lines&quot;: [{&quot;price&quot;: 82.39399719238281, &quot;color&quot;: &quot;#ef5350&quot;, &quot;title&quot;: &quot;Swing High (Res)&quot;, &quot;lineWidth&quot;: 1, &quot;lineStyle&quot;: 2, &quot;axisLabelVisible&quot;: true}, {&quot;price&quot;: 66.27400207519531, &quot;color&quot;: &quot;#26a69a&quot;, &quot;title&quot;: &quot;EQL (Sup)&quot;, &quot;lineWidth&quot;: 1, &quot;lineStyle&quot;: 2, &quot;axisLabelVisible&quot;: true}], &quot;trade_lines&quot;: [{&quot;price&quot;: 81.4260025024414, &quot;color&quot;: &quot;#4caf50&quot;, &quot;title&quot;: &quot;ENTRY&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 79.19010543823242, &quot;color&quot;: &quot;#ef5350&quot;, &quot;title&quot;: &quot;STOP&quot;, &quot;style&quot;: 0}, {&quot;price&quot;: 83.05452255249024, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP1&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 85.89779663085938, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP2&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 88.13369369506836, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP3&quot;, &quot;style&quot;: 2}], &quot;earnings_vwap&quot;: [], &quot;symbol&quot;: &quot;NVDA&quot;, &quot;width&quot;: 800, &quot;height&quot;: 600};
+                    
+                    if (!data.candles || data.candles.length === 0) {
+                        document.getElementById('chart-container').innerHTML = '<div style=&quot;color:white;text-align:center;padding:20px;&quot;>No candle data available</div>';
+                        throw new Error(&quot;No data&quot;);
+                    }
+
+                    const chartContainer = document.getElementById('chart-container');
+                    const chart = LightweightCharts.createChart(chartContainer, {
+                        layout: { background: { type: 'solid', color: '#0a0a0a' }, textColor: '#d1d4dc' },
+                        grid: { vertLines: { color: '#1f2937' }, horzLines: { color: '#1f2937' } },
+                        rightPriceScale: { borderColor: '#363c4e' },
+                        timeScale: { borderColor: '#363c4e', timeVisible: true },
+                        crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+                    });
+                    
+                    // Candle Series
+                    const candlestickSeries = chart.addCandlestickSeries({
+                        upColor: '#26a69a', downColor: '#ef5350', borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350'
+                    });
+                    candlestickSeries.setData(data.candles);
+
+                    // Markers (Text for Lines)
+                    const markers = [];
+                    
+                    // FVG Areas
+                    if (data.fvg_lines) {
+                        data.fvg_lines.forEach(line => {
+                            const fvgSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: false,
+                                lastValueVisible: true,
+                                title: line.title,
+                                crosshairMarkerVisible: true
+                            });
+                            
+                            const lineData = [];
+                            data.candles.forEach(c => {
+                                if (c.time >= line.start_time) {
+                                    lineData.push({ time: c.time, value: line.price });
+                                }
+                            });
+                            if (lineData.length > 0) fvgSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Set Markers
+                    candlestickSeries.setMarkers(markers);
+
+                    // Key Levels
+                    if (data.level_lines) {
+                        data.level_lines.forEach(line => {
+                            const levelSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: line.lineWidth || 1,
+                                lineStyle: line.lineStyle || LightweightCharts.LineStyle.Dashed,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                             
+                            const lineData = data.candles.map(c => ({ time: c.time, value: line.price }));
+                            levelSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Trade Plan Lines
+                    if (data.trade_lines) {
+                        data.trade_lines.forEach(line => {
+                            const tradeSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: line.style === 2 ? LightweightCharts.LineStyle.Dashed : LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                            
+                            const recentCandles = data.candles.slice(-100);
+                            const lineData = recentCandles.map(c => ({ time: c.time, value: line.price }));
+                            tradeSeries.setData(lineData);
+                        });
+                    }
+
+                    // Earnings VWAP
+                    if (data.earnings_vwap && data.earnings_vwap.length > 0) {
+                        const vwapSeries = chart.addLineSeries({
+                            color: '#b39ddb',
+                            lineWidth: 2,
+                            lineStyle: LightweightCharts.LineStyle.Solid,
+                            title: 'Earnings VWAP',
+                            priceLineVisible: false
+                        });
+                        vwapSeries.setData(data.earnings_vwap);
+                    }
+                    
+                    // Set visible range safely
+                    const lastTime = data.candles[data.candles.length - 1].time;
+                    const startTime = data.candles[Math.max(0, data.candles.length - 100)].time;
+                    chart.timeScale().setVisibleRange({ from: startTime, to: lastTime });
+                    
+                    // Resizing
+                    window.addEventListener('resize', () => {
+                        chart.resize(chartContainer.clientWidth, chartContainer.clientHeight);
+                    });
+                    
+                } catch (e) {
+                    console.error(&quot;Chart Error:&quot;, e);
+                    document.body.innerHTML += '<div style=&quot;position:absolute;top:10px;left:10px;color:red;background:rgba(0,0,0,0.8);padding:10px;&quot;>JS Error: ' + e.message + '</div>';
+                }
+            </script>
+        </body>
+        </html>
+        "></iframe>
+    </div>
+</body>
+</html>

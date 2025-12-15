@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NVDA 2023-12-21 - SL</title>
+    <style>
+        body { 
+            background: #0a0a0a; 
+            color: #d1d4dc; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0; 
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #ef5350;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #ef5350;
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 16px;
+        }
+        .stat { padding: 5px 15px; background: #1a1a2e; border-radius: 5px; }
+        .panel {
+            margin-bottom: 30px;
+            border: 1px solid #363c4e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .panel-header {
+            background: #1a1a2e;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .panel iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>❌ LOSS - SL HIT</h1>
+        <div class="stats">
+            <div class="stat">📅 2023-12-21</div>
+            <div class="stat">💰 Entry: $49.00</div>
+            <div class="stat">🎯 Exit: $48.02</div>
+            <div class="stat" style="color: #ef5350">P&L: -2.00%</div>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <div class="panel-header">📊 SETUP (Before Entry)</div>
+        <iframe srcdoc="
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>NVDA ICT Analysis</title>
+            <script src=&quot;https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js&quot;></script>
+            <style>
+                body { background: #0a0a0a; color: #d1d4dc; font-family: -apple-system, sans-serif; margin: 0; display: flex; height: 100vh; }
+                #chart-container { flex: 1; position: relative; }
+                #sidebar { width: 280px; background: #1a1a2e; padding: 20px; border-left: 1px solid #363c4e; overflow-y: auto; box-shadow: -2px 0 10px rgba(0,0,0,0.3); }
+                h2 { color: #2196f3; margin-top: 0; font-size: 20px; }
+                h3 { color: #a0a0a0; font-size: 14px; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #363c4e; padding-bottom: 5px; }
+                .stat-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+                .bullish { color: #4caf50; }
+                .bearish { color: #ef5350; }
+                .legend { position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 24px; font-weight: bold; color: rgba(255, 255, 255, 0.7); }
+            </style>
+        </head>
+        <body>
+            <div id=&quot;chart-container&quot;>
+                <div class=&quot;legend&quot;>NVDA 4H</div>
+            </div>
+            
+            <div id=&quot;sidebar&quot;>
+                <h2>📊 Analysis Summary</h2>
+                <div style=&quot;font-size: 13px; line-height: 1.6;&quot;>
+                    🔴 RESISTANCE (EQH) @ $50.22<br>⚠️ BEAR GAP above @ $49.82<br>🟢 SUPPORT (Swing) @ $48.10
+        <div style=&quot;margin-top: 15px; border-top: 1px solid #363c4e; padding-top: 10px;&quot;>
+            <h3 style=&quot;color: #4caf50; margin-bottom: 5px;&quot;>🚀 BULLISH SETUP</h3>
+            <div style=&quot;font-size: 13px; color: #d1d4dc;&quot;>
+                <div><strong>Entry:</strong> <span style=&quot;color: #4caf50;&quot;>$49.00</span> (Aggressive (Market))</div>
+                <div><strong>Stop Loss:</strong> <span style=&quot;color: #ef5350;&quot;>$48.02</span></div>
+                <div style=&quot;margin-top: 5px;&quot;><strong>Targets:</strong></div>
+                <div>🎯 TP1: <span style=&quot;color: #2196f3;&quot;>$50.22</span></div>
+                <div>🎯 TP2: <span style=&quot;color: #2196f3;&quot;>$50.96</span></div>
+                <div>🚀 TP3: <span style=&quot;color: #2196f3;&quot;>$51.94</span></div>
+            </div>
+        </div>
+        
+                </div>
+                
+                <h3>Key Levels Found</h3>
+                <div class=&quot;stat-item&quot;>
+                    <span>Fair Value Gaps:</span>
+                    <span>4</span>
+                </div>
+                <div class=&quot;stat-item&quot;>
+                    <span>EQH/EQL Zones:</span>
+                    <span>1</span>
+                </div>
+                
+            </div>
+
+            <script>
+                try {
+                    const data = {&quot;candles&quot;: [{&quot;time&quot;: 1702468800, &quot;open&quot;: 47.62900161743164, &quot;high&quot;: 48.59400177001953, &quot;low&quot;: 47.60799789428711, &quot;close&quot;: 48.275001525878906}, {&quot;time&quot;: 1702483200, &quot;open&quot;: 48.28049850463867, &quot;high&quot;: 48.53200149536133, &quot;low&quot;: 47.779998779296875, &quot;close&quot;: 47.98299789428711}, {&quot;time&quot;: 1702497600, &quot;open&quot;: 47.98250198364258, &quot;high&quot;: 48.12699890136719, &quot;low&quot;: 47.928001403808594, &quot;close&quot;: 48.09000015258789}, {&quot;time&quot;: 1702555200, &quot;open&quot;: 48.474998474121094, &quot;high&quot;: 48.67000198364258, &quot;low&quot;: 47.888999938964844, &quot;close&quot;: 48.20738983154297}, {&quot;time&quot;: 1702569600, &quot;open&quot;: 48.20750045776367, &quot;high&quot;: 48.29999923706055, &quot;low&quot;: 47.422000885009766, &quot;close&quot;: 48.12000274658203}, {&quot;time&quot;: 1702584000, &quot;open&quot;: 48.11101150512695, &quot;high&quot;: 48.349998474121094, &quot;low&quot;: 48.11101150512695, &quot;close&quot;: 48.349998474121094}, {&quot;time&quot;: 1702641600, &quot;open&quot;: 48.400001525878906, &quot;high&quot;: 49.40399932861328, &quot;low&quot;: 48.382999420166016, &quot;close&quot;: 49.13100051879883}, {&quot;time&quot;: 1702656000, &quot;open&quot;: 49.13399887084961, &quot;high&quot;: 49.292999267578125, &quot;low&quot;: 48.849998474121094, &quot;close&quot;: 48.96500015258789}, {&quot;time&quot;: 1702670400, &quot;open&quot;: 48.96500015258789, &quot;high&quot;: 49.066001892089844, &quot;low&quot;: 48.88399887084961, &quot;close&quot;: 48.944000244140625}, {&quot;time&quot;: 1702900800, &quot;open&quot;: 49.400001525878906, &quot;high&quot;: 50.0, &quot;low&quot;: 49.150001525878906, &quot;close&quot;: 49.79500198364258}, {&quot;time&quot;: 1702915200, &quot;open&quot;: 49.79100036621094, &quot;high&quot;: 50.400001525878906, &quot;low&quot;: 49.720008850097656, &quot;close&quot;: 50.39400100708008}, {&quot;time&quot;: 1702929600, &quot;open&quot;: 50.400001525878906, &quot;high&quot;: 50.43299102783203, &quot;low&quot;: 50.0629997253418, &quot;close&quot;: 50.08100128173828}, {&quot;time&quot;: 1702987200, &quot;open&quot;: 49.42399978637695, &quot;high&quot;: 49.70000076293945, &quot;low&quot;: 48.89500045776367, &quot;close&quot;: 49.13750076293945}, {&quot;time&quot;: 1703001600, &quot;open&quot;: 49.137001037597656, &quot;high&quot;: 49.584999084472656, &quot;low&quot;: 49.060001373291016, &quot;close&quot;: 49.5}, {&quot;time&quot;: 1703016000, &quot;open&quot;: 49.499000549316406, &quot;high&quot;: 49.617000579833984, &quot;low&quot;: 49.439998626708984, &quot;close&quot;: 49.61289978027344}, {&quot;time&quot;: 1703073600, &quot;open&quot;: 49.654998779296875, &quot;high&quot;: 49.999000549316406, &quot;low&quot;: 49.4630012512207, &quot;close&quot;: 49.8120002746582}, {&quot;time&quot;: 1703088000, &quot;open&quot;: 49.81050109863281, &quot;high&quot;: 49.875, &quot;low&quot;: 48.2609977722168, &quot;close&quot;: 48.362998962402344}, {&quot;time&quot;: 1703102400, &quot;open&quot;: 48.37200164794922, &quot;high&quot;: 48.49800109863281, &quot;low&quot;: 48.097999572753906, &quot;close&quot;: 48.11000061035156}, {&quot;time&quot;: 1703160000, &quot;open&quot;: 48.810997009277344, &quot;high&quot;: 49.095001220703125, &quot;low&quot;: 48.50400161743164, &quot;close&quot;: 48.7130012512207}, {&quot;time&quot;: 1703174400, &quot;open&quot;: 48.71500015258789, &quot;high&quot;: 48.935997009277344, &quot;low&quot;: 48.41899871826172, &quot;close&quot;: 48.91600036621094}, {&quot;time&quot;: 1703188800, &quot;open&quot;: 48.91899871826172, &quot;high&quot;: 49.045989990234375, &quot;low&quot;: 48.87300109863281, &quot;close&quot;: 48.99700164794922}], &quot;fvg_lines&quot;: [{&quot;price&quot;: 48.98050117492676, &quot;color&quot;: &quot;#ff9800&quot;, &quot;title&quot;: &quot;BEAR GAP&quot;, &quot;start_time&quot;: 1703088000, &quot;end_time&quot;: 1703188800}, {&quot;price&quot;: 49.82399940490723, &quot;color&quot;: &quot;#ff9800&quot;, &quot;title&quot;: &quot;BEAR GAP&quot;, &quot;start_time&quot;: 1702987200, &quot;end_time&quot;: 1703188800}], &quot;level_lines&quot;: [{&quot;price&quot;: 48.89500045776367, &quot;color&quot;: &quot;#26a69a&quot;, &quot;title&quot;: &quot;Swing Low (Sup)&quot;, &quot;lineWidth&quot;: 1, &quot;lineStyle&quot;: 2, &quot;axisLabelVisible&quot;: true}, {&quot;price&quot;: 50.21599578857422, &quot;color&quot;: &quot;#ef5350&quot;, &quot;title&quot;: &quot;EQH (Res)&quot;, &quot;lineWidth&quot;: 1, &quot;lineStyle&quot;: 2, &quot;axisLabelVisible&quot;: true}], &quot;trade_lines&quot;: [{&quot;price&quot;: 48.99700164794922, &quot;color&quot;: &quot;#4caf50&quot;, &quot;title&quot;: &quot;ENTRY&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 48.01706161499023, &quot;color&quot;: &quot;#ef5350&quot;, &quot;title&quot;: &quot;STOP&quot;, &quot;style&quot;: 0}, {&quot;price&quot;: 50.21599578857422, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP1&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 50.95688171386719, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP2&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 51.936821746826176, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP3&quot;, &quot;style&quot;: 2}], &quot;earnings_vwap&quot;: [], &quot;symbol&quot;: &quot;NVDA&quot;, &quot;width&quot;: 800, &quot;height&quot;: 600};
+                    
+                    if (!data.candles || data.candles.length === 0) {
+                        document.getElementById('chart-container').innerHTML = '<div style=&quot;color:white;text-align:center;padding:20px;&quot;>No candle data available</div>';
+                        throw new Error(&quot;No data&quot;);
+                    }
+
+                    const chartContainer = document.getElementById('chart-container');
+                    const chart = LightweightCharts.createChart(chartContainer, {
+                        layout: { background: { type: 'solid', color: '#0a0a0a' }, textColor: '#d1d4dc' },
+                        grid: { vertLines: { color: '#1f2937' }, horzLines: { color: '#1f2937' } },
+                        rightPriceScale: { borderColor: '#363c4e' },
+                        timeScale: { borderColor: '#363c4e', timeVisible: true },
+                        crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+                    });
+                    
+                    // Candle Series
+                    const candlestickSeries = chart.addCandlestickSeries({
+                        upColor: '#26a69a', downColor: '#ef5350', borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350'
+                    });
+                    candlestickSeries.setData(data.candles);
+
+                    // Markers (Text for Lines)
+                    const markers = [];
+                    
+                    // FVG Areas
+                    if (data.fvg_lines) {
+                        data.fvg_lines.forEach(line => {
+                            const fvgSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: false,
+                                lastValueVisible: true,
+                                title: line.title,
+                                crosshairMarkerVisible: true
+                            });
+                            
+                            const lineData = [];
+                            data.candles.forEach(c => {
+                                if (c.time >= line.start_time) {
+                                    lineData.push({ time: c.time, value: line.price });
+                                }
+                            });
+                            if (lineData.length > 0) fvgSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Set Markers
+                    candlestickSeries.setMarkers(markers);
+
+                    // Key Levels
+                    if (data.level_lines) {
+                        data.level_lines.forEach(line => {
+                            const levelSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: line.lineWidth || 1,
+                                lineStyle: line.lineStyle || LightweightCharts.LineStyle.Dashed,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                             
+                            const lineData = data.candles.map(c => ({ time: c.time, value: line.price }));
+                            levelSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Trade Plan Lines
+                    if (data.trade_lines) {
+                        data.trade_lines.forEach(line => {
+                            const tradeSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: line.style === 2 ? LightweightCharts.LineStyle.Dashed : LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                            
+                            const recentCandles = data.candles.slice(-100);
+                            const lineData = recentCandles.map(c => ({ time: c.time, value: line.price }));
+                            tradeSeries.setData(lineData);
+                        });
+                    }
+
+                    // Earnings VWAP
+                    if (data.earnings_vwap && data.earnings_vwap.length > 0) {
+                        const vwapSeries = chart.addLineSeries({
+                            color: '#b39ddb',
+                            lineWidth: 2,
+                            lineStyle: LightweightCharts.LineStyle.Solid,
+                            title: 'Earnings VWAP',
+                            priceLineVisible: false
+                        });
+                        vwapSeries.setData(data.earnings_vwap);
+                    }
+                    
+                    // Set visible range safely
+                    const lastTime = data.candles[data.candles.length - 1].time;
+                    const startTime = data.candles[Math.max(0, data.candles.length - 100)].time;
+                    chart.timeScale().setVisibleRange({ from: startTime, to: lastTime });
+                    
+                    // Resizing
+                    window.addEventListener('resize', () => {
+                        chart.resize(chartContainer.clientWidth, chartContainer.clientHeight);
+                    });
+                    
+                } catch (e) {
+                    console.error(&quot;Chart Error:&quot;, e);
+                    document.body.innerHTML += '<div style=&quot;position:absolute;top:10px;left:10px;color:red;background:rgba(0,0,0,0.8);padding:10px;&quot;>JS Error: ' + e.message + '</div>';
+                }
+            </script>
+        </body>
+        </html>
+        "></iframe>
+    </div>
+    
+    <div class="panel">
+        <div class="panel-header">📈 OUTCOME (+30 days)</div>
+        <iframe srcdoc="
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>NVDA ICT Analysis</title>
+            <script src=&quot;https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js&quot;></script>
+            <style>
+                body { background: #0a0a0a; color: #d1d4dc; font-family: -apple-system, sans-serif; margin: 0; display: flex; height: 100vh; }
+                #chart-container { flex: 1; position: relative; }
+                #sidebar { width: 280px; background: #1a1a2e; padding: 20px; border-left: 1px solid #363c4e; overflow-y: auto; box-shadow: -2px 0 10px rgba(0,0,0,0.3); }
+                h2 { color: #2196f3; margin-top: 0; font-size: 20px; }
+                h3 { color: #a0a0a0; font-size: 14px; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #363c4e; padding-bottom: 5px; }
+                .stat-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+                .bullish { color: #4caf50; }
+                .bearish { color: #ef5350; }
+                .legend { position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 24px; font-weight: bold; color: rgba(255, 255, 255, 0.7); }
+            </style>
+        </head>
+        <body>
+            <div id=&quot;chart-container&quot;>
+                <div class=&quot;legend&quot;>NVDA 4H</div>
+            </div>
+            
+            <div id=&quot;sidebar&quot;>
+                <h2>📊 Analysis Summary</h2>
+                <div style=&quot;font-size: 13px; line-height: 1.6;&quot;>
+                    ✅ BULL GAP below @ $58.69<br>🟢 SUPPORT (EQL) @ $47.37
+        <div style=&quot;margin-top: 15px; border-top: 1px solid #363c4e; padding-top: 10px;&quot;>
+            <h3 style=&quot;color: #4caf50; margin-bottom: 5px;&quot;>🚀 BULLISH SETUP</h3>
+            <div style=&quot;font-size: 13px; color: #d1d4dc;&quot;>
+                <div><strong>Entry:</strong> <span style=&quot;color: #4caf50;&quot;>$59.09</span> (Limit Buy (FVG))</div>
+                <div><strong>Stop Loss:</strong> <span style=&quot;color: #ef5350;&quot;>$57.70</span></div>
+                <div style=&quot;margin-top: 5px;&quot;><strong>Targets:</strong></div>
+                <div>🎯 TP1: <span style=&quot;color: #2196f3;&quot;>$60.27</span></div>
+                <div>🎯 TP2: <span style=&quot;color: #2196f3;&quot;>$61.87</span></div>
+                <div>🚀 TP3: <span style=&quot;color: #2196f3;&quot;>$63.25</span></div>
+            </div>
+        </div>
+        
+                </div>
+                
+                <h3>Key Levels Found</h3>
+                <div class=&quot;stat-item&quot;>
+                    <span>Fair Value Gaps:</span>
+                    <span>15</span>
+                </div>
+                <div class=&quot;stat-item&quot;>
+                    <span>EQH/EQL Zones:</span>
+                    <span>2</span>
+                </div>
+                
+            </div>
+
+            <script>
+                try {
+                    const data = {&quot;candles&quot;: [{&quot;time&quot;: 1702468800, &quot;open&quot;: 47.62900161743164, &quot;high&quot;: 48.59400177001953, &quot;low&quot;: 47.60799789428711, &quot;close&quot;: 48.275001525878906}, {&quot;time&quot;: 1702483200, &quot;open&quot;: 48.28049850463867, &quot;high&quot;: 48.53200149536133, &quot;low&quot;: 47.779998779296875, &quot;close&quot;: 47.98299789428711}, {&quot;time&quot;: 1702497600, &quot;open&quot;: 47.98250198364258, &quot;high&quot;: 48.12699890136719, &quot;low&quot;: 47.928001403808594, &quot;close&quot;: 48.09000015258789}, {&quot;time&quot;: 1702555200, &quot;open&quot;: 48.474998474121094, &quot;high&quot;: 48.67000198364258, &quot;low&quot;: 47.888999938964844, &quot;close&quot;: 48.20738983154297}, {&quot;time&quot;: 1702569600, &quot;open&quot;: 48.20750045776367, &quot;high&quot;: 48.29999923706055, &quot;low&quot;: 47.422000885009766, &quot;close&quot;: 48.12000274658203}, {&quot;time&quot;: 1702584000, &quot;open&quot;: 48.11101150512695, &quot;high&quot;: 48.349998474121094, &quot;low&quot;: 48.11101150512695, &quot;close&quot;: 48.349998474121094}, {&quot;time&quot;: 1702641600, &quot;open&quot;: 48.400001525878906, &quot;high&quot;: 49.40399932861328, &quot;low&quot;: 48.382999420166016, &quot;close&quot;: 49.13100051879883}, {&quot;time&quot;: 1702656000, &quot;open&quot;: 49.13399887084961, &quot;high&quot;: 49.292999267578125, &quot;low&quot;: 48.849998474121094, &quot;close&quot;: 48.96500015258789}, {&quot;time&quot;: 1702670400, &quot;open&quot;: 48.96500015258789, &quot;high&quot;: 49.066001892089844, &quot;low&quot;: 48.88399887084961, &quot;close&quot;: 48.944000244140625}, {&quot;time&quot;: 1702900800, &quot;open&quot;: 49.400001525878906, &quot;high&quot;: 50.0, &quot;low&quot;: 49.150001525878906, &quot;close&quot;: 49.79500198364258}, {&quot;time&quot;: 1702915200, &quot;open&quot;: 49.79100036621094, &quot;high&quot;: 50.400001525878906, &quot;low&quot;: 49.720008850097656, &quot;close&quot;: 50.39400100708008}, {&quot;time&quot;: 1702929600, &quot;open&quot;: 50.400001525878906, &quot;high&quot;: 50.43299102783203, &quot;low&quot;: 50.0629997253418, &quot;close&quot;: 50.08100128173828}, {&quot;time&quot;: 1702987200, &quot;open&quot;: 49.42399978637695, &quot;high&quot;: 49.70000076293945, &quot;low&quot;: 48.89500045776367, &quot;close&quot;: 49.13750076293945}, {&quot;time&quot;: 1703001600, &quot;open&quot;: 49.137001037597656, &quot;high&quot;: 49.584999084472656, &quot;low&quot;: 49.060001373291016, &quot;close&quot;: 49.5}, {&quot;time&quot;: 1703016000, &quot;open&quot;: 49.499000549316406, &quot;high&quot;: 49.617000579833984, &quot;low&quot;: 49.439998626708984, &quot;close&quot;: 49.61289978027344}, {&quot;time&quot;: 1703073600, &quot;open&quot;: 49.654998779296875, &quot;high&quot;: 49.999000549316406, &quot;low&quot;: 49.4630012512207, &quot;close&quot;: 49.8120002746582}, {&quot;time&quot;: 1703088000, &quot;open&quot;: 49.81050109863281, &quot;high&quot;: 49.875, &quot;low&quot;: 48.2609977722168, &quot;close&quot;: 48.362998962402344}, {&quot;time&quot;: 1703102400, &quot;open&quot;: 48.37200164794922, &quot;high&quot;: 48.49800109863281, &quot;low&quot;: 48.097999572753906, &quot;close&quot;: 48.11000061035156}, {&quot;time&quot;: 1703160000, &quot;open&quot;: 48.810997009277344, &quot;high&quot;: 49.095001220703125, &quot;low&quot;: 48.50400161743164, &quot;close&quot;: 48.7130012512207}, {&quot;time&quot;: 1703174400, &quot;open&quot;: 48.71500015258789, &quot;high&quot;: 48.935997009277344, &quot;low&quot;: 48.41899871826172, &quot;close&quot;: 48.91600036621094}, {&quot;time&quot;: 1703188800, &quot;open&quot;: 48.91899871826172, &quot;high&quot;: 49.045989990234375, &quot;low&quot;: 48.87300109863281, &quot;close&quot;: 48.99700164794922}, {&quot;time&quot;: 1703246400, &quot;open&quot;: 49.19499969482422, &quot;high&quot;: 49.382999420166016, &quot;low&quot;: 48.917999267578125, &quot;close&quot;: 49.04500198364258}, {&quot;time&quot;: 1703260800, &quot;open&quot;: 49.04199981689453, &quot;high&quot;: 49.14800262451172, &quot;low&quot;: 48.467002868652344, &quot;close&quot;: 48.8120002746582}, {&quot;time&quot;: 1703275200, &quot;open&quot;: 48.813499450683594, &quot;high&quot;: 48.834999084472656, &quot;low&quot;: 48.66400146484375, &quot;close&quot;: 48.82699966430664}, {&quot;time&quot;: 1703592000, &quot;open&quot;: 48.96799850463867, &quot;high&quot;: 49.599998474121094, &quot;low&quot;: 48.95000076293945, &quot;close&quot;: 49.32500076293945}, {&quot;time&quot;: 1703606400, &quot;open&quot;: 49.32500076293945, &quot;high&quot;: 49.48699951171875, &quot;low&quot;: 49.26499938964844, &quot;close&quot;: 49.45199966430664}, {&quot;time&quot;: 1703620800, &quot;open&quot;: 49.45199966430664, &quot;high&quot;: 49.47853088378906, &quot;low&quot;: 49.26499938964844, &quot;close&quot;: 49.28099822998047}, {&quot;time&quot;: 1703678400, &quot;open&quot;: 49.5109977722168, &quot;high&quot;: 49.68000030517578, &quot;low&quot;: 49.084999084472656, &quot;close&quot;: 49.36227035522461}, {&quot;time&quot;: 1703692800, &quot;open&quot;: 49.361000061035156, &quot;high&quot;: 49.507999420166016, &quot;low&quot;: 49.282752990722656, &quot;close&quot;: 49.3738899230957}, {&quot;time&quot;: 1703707200, &quot;open&quot;: 49.37799072265625, &quot;high&quot;: 49.435001373291016, &quot;low&quot;: 49.323001861572266, &quot;close&quot;: 49.420997619628906}, {&quot;time&quot;: 1703764800, &quot;open&quot;: 49.64299774169922, &quot;high&quot;: 49.8489990234375, &quot;low&quot;: 49.4119987487793, &quot;close&quot;: 49.65903854370117}, {&quot;time&quot;: 1703779200, &quot;open&quot;: 49.665000915527344, &quot;high&quot;: 49.88399124145508, &quot;low&quot;: 49.470001220703125, &quot;close&quot;: 49.52436065673828}, {&quot;time&quot;: 1703793600, &quot;open&quot;: 49.52450942993164, &quot;high&quot;: 49.70600128173828, &quot;low&quot;: 49.474998474121094, &quot;close&quot;: 49.52000045776367}, {&quot;time&quot;: 1703851200, &quot;open&quot;: 49.8129997253418, &quot;high&quot;: 49.99700164794922, &quot;low&quot;: 48.750999450683594, &quot;close&quot;: 48.8120002746582}, {&quot;time&quot;: 1703865600, &quot;open&quot;: 48.80799865722656, &quot;high&quot;: 49.95000076293945, &quot;low&quot;: 48.790000915527344, &quot;close&quot;: 49.73400115966797}, {&quot;time&quot;: 1703880000, &quot;open&quot;: 49.73299789428711, &quot;high&quot;: 49.77000045776367, &quot;low&quot;: 49.44599914550781, &quot;close&quot;: 49.5260009765625}, {&quot;time&quot;: 1704196800, &quot;open&quot;: 49.125, &quot;high&quot;: 49.266502380371094, &quot;low&quot;: 47.595001220703125, &quot;close&quot;: 48.11602020263672}, {&quot;time&quot;: 1704211200, &quot;open&quot;: 48.11750030517578, &quot;high&quot;: 48.347999572753906, &quot;low&quot;: 47.820011138916016, &quot;close&quot;: 47.88399887084961}, {&quot;time&quot;: 1704225600, &quot;open&quot;: 47.8859977722168, &quot;high&quot;: 48.20800018310547, &quot;low&quot;: 47.777000427246094, &quot;close&quot;: 48.185001373291016}, {&quot;time&quot;: 1704283200, &quot;open&quot;: 47.45000076293945, &quot;high&quot;: 48.18410110473633, &quot;low&quot;: 47.31999969482422, &quot;close&quot;: 47.751502990722656}, {&quot;time&quot;: 1704297600, &quot;open&quot;: 47.75040054321289, &quot;high&quot;: 47.87900161743164, &quot;low&quot;: 47.44499969482422, &quot;close&quot;: 47.652000427246094}, {&quot;time&quot;: 1704312000, &quot;open&quot;: 47.64896011352539, &quot;high&quot;: 47.74700164794922, &quot;low&quot;: 47.45000076293945, &quot;close&quot;: 47.56999969482422}, {&quot;time&quot;: 1704369600, &quot;open&quot;: 47.76700210571289, &quot;high&quot;: 48.4010009765625, &quot;low&quot;: 47.507999420166016, &quot;close&quot;: 48.305660247802734}, {&quot;time&quot;: 1704384000, &quot;open&quot;: 48.303009033203125, &quot;high&quot;: 48.5, &quot;low&quot;: 48.053001403808594, &quot;close&quot;: 48.19586944580078}, {&quot;time&quot;: 1704398400, &quot;open&quot;: 48.189998626708984, &quot;high&quot;: 48.26000213623047, &quot;low&quot;: 47.97999954223633, &quot;close&quot;: 47.99399948120117}, {&quot;time&quot;: 1704456000, &quot;open&quot;: 48.461997985839844, &quot;high&quot;: 49.547000885009766, &quot;low&quot;: 48.306007385253906, &quot;close&quot;: 49.38750076293945}, {&quot;time&quot;: 1704470400, &quot;open&quot;: 49.38999938964844, &quot;high&quot;: 49.4379997253418, &quot;low&quot;: 48.78302001953125, &quot;close&quot;: 48.868499755859375}, {&quot;time&quot;: 1704484800, &quot;open&quot;: 48.86199951171875, &quot;high&quot;: 49.10300064086914, &quot;low&quot;: 48.80500030517578, &quot;close&quot;: 49.09000015258789}, {&quot;time&quot;: 1704715200, &quot;open&quot;: 49.512001037597656, &quot;high&quot;: 51.572998046875, &quot;low&quot;: 49.479000091552734, &quot;close&quot;: 51.28200149536133}, {&quot;time&quot;: 1704729600, &quot;open&quot;: 51.28685760498047, &quot;high&quot;: 51.89799880981445, &quot;low&quot;: 51.10300064086914, &quot;close&quot;: 51.8703498840332}, {&quot;time&quot;: 1704744000, &quot;open&quot;: 51.86899948120117, &quot;high&quot;: 52.275001525878906, &quot;low&quot;: 51.81599807739258, &quot;close&quot;: 52.25499725341797}, {&quot;time&quot;: 1704801600, &quot;open&quot;: 52.4010009765625, &quot;high&quot;: 52.9010009765625, &quot;low&quot;: 51.69000244140625, &quot;close&quot;: 52.8599967956543}, {&quot;time&quot;: 1704816000, &quot;open&quot;: 52.85240936279297, &quot;high&quot;: 54.32500076293945, &quot;low&quot;: 52.7706298828125, &quot;close&quot;: 53.5584716796875}, {&quot;time&quot;: 1704830400, &quot;open&quot;: 53.55399703979492, &quot;high&quot;: 53.65700149536133, &quot;low&quot;: 53.01816940307617, &quot;close&quot;: 53.13100051879883}, {&quot;time&quot;: 1704888000, &quot;open&quot;: 53.615997314453125, &quot;high&quot;: 54.599998474121094, &quot;low&quot;: 53.4890022277832, &quot;close&quot;: 54.31049728393555}, {&quot;time&quot;: 1704902400, &quot;open&quot;: 54.31450271606445, &quot;high&quot;: 54.47999954223633, &quot;low&quot;: 53.9849967956543, &quot;close&quot;: 54.21149826049805}, {&quot;time&quot;: 1704916800, &quot;open&quot;: 54.20800018310547, &quot;high&quot;: 54.365997314453125, &quot;low&quot;: 53.95200729370117, &quot;close&quot;: 54.349998474121094}, {&quot;time&quot;: 1704974400, &quot;open&quot;: 54.999000549316406, &quot;high&quot;: 55.34600067138672, &quot;low&quot;: 53.55999755859375, &quot;close&quot;: 53.855010986328125}, {&quot;time&quot;: 1704988800, &quot;open&quot;: 53.849998474121094, &quot;high&quot;: 55.20000076293945, &quot;low&quot;: 53.60599899291992, &quot;close&quot;: 54.87662887573242}, {&quot;time&quot;: 1705003200, &quot;open&quot;: 54.875, &quot;high&quot;: 54.91804122924805, &quot;low&quot;: 54.600013732910156, &quot;close&quot;: 54.82999801635742}, {&quot;time&quot;: 1705060800, &quot;open&quot;: 54.62000274658203, &quot;high&quot;: 54.970001220703125, &quot;low&quot;: 54.330078125, &quot;close&quot;: 54.69501876831055}, {&quot;time&quot;: 1705075200, &quot;open&quot;: 54.699501037597656, &quot;high&quot;: 54.914268493652344, &quot;low&quot;: 54.4904899597168, &quot;close&quot;: 54.6250114440918}, {&quot;time&quot;: 1705089600, &quot;open&quot;: 54.6345100402832, &quot;high&quot;: 54.74799728393555, &quot;low&quot;: 54.57999801635742, &quot;close&quot;: 54.70800018310547}, {&quot;time&quot;: 1705406400, &quot;open&quot;: 55.099998474121094, &quot;high&quot;: 56.70000076293945, &quot;low&quot;: 55.053497314453125, &quot;close&quot;: 56.56928634643555}, {&quot;time&quot;: 1705420800, &quot;open&quot;: 56.58100128173828, &quot;high&quot;: 56.834991455078125, &quot;low&quot;: 56.025001525878906, &quot;close&quot;: 56.105377197265625}, {&quot;time&quot;: 1705435200, &quot;open&quot;: 56.10700225830078, &quot;high&quot;: 56.4010009765625, &quot;low&quot;: 56.03001022338867, &quot;close&quot;: 56.400001525878906}, {&quot;time&quot;: 1705492800, &quot;open&quot;: 56.34699630737305, &quot;high&quot;: 56.470680236816406, &quot;low&quot;: 54.7400016784668, &quot;close&quot;: 55.888999938964844}, {&quot;time&quot;: 1705507200, &quot;open&quot;: 55.89400100708008, &quot;high&quot;: 56.2760009765625, &quot;low&quot;: 55.5099983215332, &quot;close&quot;: 55.72150802612305}, {&quot;time&quot;: 1705521600, &quot;open&quot;: 55.73112106323242, &quot;high&quot;: 56.19099807739258, &quot;low&quot;: 55.67899703979492, &quot;close&quot;: 56.051002502441406}, {&quot;time&quot;: 1705579200, &quot;open&quot;: 57.2599983215332, &quot;high&quot;: 57.59400177001953, &quot;low&quot;: 56.88800048828125, &quot;close&quot;: 57.52100372314453}, {&quot;time&quot;: 1705593600, &quot;open&quot;: 57.52800369262695, &quot;high&quot;: 57.599998474121094, &quot;low&quot;: 56.10700225830078, &quot;close&quot;: 56.944000244140625}, {&quot;time&quot;: 1705608000, &quot;open&quot;: 56.95000076293945, &quot;high&quot;: 57.18499755859375, &quot;low&quot;: 56.840003967285156, &quot;close&quot;: 57.09821319580078}, {&quot;time&quot;: 1705665600, &quot;open&quot;: 57.9890022277832, &quot;high&quot;: 58.28200149536133, &quot;low&quot;: 57.224998474121094, &quot;close&quot;: 58.24199676513672}, {&quot;time&quot;: 1705680000, &quot;open&quot;: 58.24190139770508, &quot;high&quot;: 59.20600128173828, &quot;low&quot;: 58.17399978637695, &quot;close&quot;: 59.14600372314453}, {&quot;time&quot;: 1705694400, &quot;open&quot;: 59.14000701904297, &quot;high&quot;: 59.5, &quot;low&quot;: 59.0880012512207, &quot;close&quot;: 59.5}], &quot;fvg_lines&quot;: [{&quot;price&quot;: 58.685001373291016, &quot;color&quot;: &quot;#ffeb3b&quot;, &quot;title&quot;: &quot;BULL GAP&quot;, &quot;start_time&quot;: 1705680000, &quot;end_time&quot;: 1705694400}], &quot;level_lines&quot;: [{&quot;price&quot;: 47.37100028991699, &quot;color&quot;: &quot;#26a69a&quot;, &quot;title&quot;: &quot;EQL (Sup)&quot;, &quot;lineWidth&quot;: 1, &quot;lineStyle&quot;: 2, &quot;axisLabelVisible&quot;: true}], &quot;trade_lines&quot;: [{&quot;price&quot;: 59.0880012512207, &quot;color&quot;: &quot;#4caf50&quot;, &quot;title&quot;: &quot;ENTRY&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 57.69918148040772, &quot;color&quot;: &quot;#ef5350&quot;, &quot;title&quot;: &quot;STOP&quot;, &quot;style&quot;: 0}, {&quot;price&quot;: 60.26976127624512, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP1&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 61.865640792846676, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP2&quot;, &quot;style&quot;: 2}, {&quot;price&quot;: 63.25446056365966, &quot;color&quot;: &quot;#2196f3&quot;, &quot;title&quot;: &quot;TP3&quot;, &quot;style&quot;: 2}], &quot;earnings_vwap&quot;: [], &quot;symbol&quot;: &quot;NVDA&quot;, &quot;width&quot;: 800, &quot;height&quot;: 600};
+                    
+                    if (!data.candles || data.candles.length === 0) {
+                        document.getElementById('chart-container').innerHTML = '<div style=&quot;color:white;text-align:center;padding:20px;&quot;>No candle data available</div>';
+                        throw new Error(&quot;No data&quot;);
+                    }
+
+                    const chartContainer = document.getElementById('chart-container');
+                    const chart = LightweightCharts.createChart(chartContainer, {
+                        layout: { background: { type: 'solid', color: '#0a0a0a' }, textColor: '#d1d4dc' },
+                        grid: { vertLines: { color: '#1f2937' }, horzLines: { color: '#1f2937' } },
+                        rightPriceScale: { borderColor: '#363c4e' },
+                        timeScale: { borderColor: '#363c4e', timeVisible: true },
+                        crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+                    });
+                    
+                    // Candle Series
+                    const candlestickSeries = chart.addCandlestickSeries({
+                        upColor: '#26a69a', downColor: '#ef5350', borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350'
+                    });
+                    candlestickSeries.setData(data.candles);
+
+                    // Markers (Text for Lines)
+                    const markers = [];
+                    
+                    // FVG Areas
+                    if (data.fvg_lines) {
+                        data.fvg_lines.forEach(line => {
+                            const fvgSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: false,
+                                lastValueVisible: true,
+                                title: line.title,
+                                crosshairMarkerVisible: true
+                            });
+                            
+                            const lineData = [];
+                            data.candles.forEach(c => {
+                                if (c.time >= line.start_time) {
+                                    lineData.push({ time: c.time, value: line.price });
+                                }
+                            });
+                            if (lineData.length > 0) fvgSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Set Markers
+                    candlestickSeries.setMarkers(markers);
+
+                    // Key Levels
+                    if (data.level_lines) {
+                        data.level_lines.forEach(line => {
+                            const levelSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: line.lineWidth || 1,
+                                lineStyle: line.lineStyle || LightweightCharts.LineStyle.Dashed,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                             
+                            const lineData = data.candles.map(c => ({ time: c.time, value: line.price }));
+                            levelSeries.setData(lineData);
+                        });
+                    }
+                    
+                    // Trade Plan Lines
+                    if (data.trade_lines) {
+                        data.trade_lines.forEach(line => {
+                            const tradeSeries = chart.addLineSeries({
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: line.style === 2 ? LightweightCharts.LineStyle.Dashed : LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            });
+                            
+                            const recentCandles = data.candles.slice(-100);
+                            const lineData = recentCandles.map(c => ({ time: c.time, value: line.price }));
+                            tradeSeries.setData(lineData);
+                        });
+                    }
+
+                    // Earnings VWAP
+                    if (data.earnings_vwap && data.earnings_vwap.length > 0) {
+                        const vwapSeries = chart.addLineSeries({
+                            color: '#b39ddb',
+                            lineWidth: 2,
+                            lineStyle: LightweightCharts.LineStyle.Solid,
+                            title: 'Earnings VWAP',
+                            priceLineVisible: false
+                        });
+                        vwapSeries.setData(data.earnings_vwap);
+                    }
+                    
+                    // Set visible range safely
+                    const lastTime = data.candles[data.candles.length - 1].time;
+                    const startTime = data.candles[Math.max(0, data.candles.length - 100)].time;
+                    chart.timeScale().setVisibleRange({ from: startTime, to: lastTime });
+                    
+                    // Resizing
+                    window.addEventListener('resize', () => {
+                        chart.resize(chartContainer.clientWidth, chartContainer.clientHeight);
+                    });
+                    
+                } catch (e) {
+                    console.error(&quot;Chart Error:&quot;, e);
+                    document.body.innerHTML += '<div style=&quot;position:absolute;top:10px;left:10px;color:red;background:rgba(0,0,0,0.8);padding:10px;&quot;>JS Error: ' + e.message + '</div>';
+                }
+            </script>
+        </body>
+        </html>
+        "></iframe>
+    </div>
+</body>
+</html>
