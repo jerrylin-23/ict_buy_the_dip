@@ -35,7 +35,8 @@ class ICTAnalyzer:
             self.symbol, 
             period=period, 
             interval=interval,
-            progress=False
+            progress=False,
+            threads=False  # Disable threading to avoid Flask/scanner conflicts
         )
         
         # Flatten column names if MultiIndex (yfinance sometimes returns MultiIndex)
@@ -55,7 +56,7 @@ class ICTAnalyzer:
         print(f"✅ Fetched {len(self.df)} candles for {self.symbol} ({self.timeframe})")
         return self.df
     
-    def detect_swing_points(self, lookback: int = 5) -> pd.DataFrame:
+    def detect_swing_points(self, lookback: int = 3) -> pd.DataFrame:
         """
         Detect swing highs and swing lows.
         
@@ -210,7 +211,7 @@ class ICTAnalyzer:
         print(f"📊 Found {bullish} bullish FVGs, {bearish} bearish FVGs ({unfilled} unfilled)")
         return fvgs
     
-    def detect_equal_highs_lows(self, threshold_pct: float = 0.2) -> dict:
+    def detect_equal_highs_lows(self, threshold_pct: float = 1.0) -> dict:
         """
         Detect Relative Equal Highs (Resistance/Liquidity) and Relative Equal Lows (Support).
         """
@@ -281,6 +282,130 @@ class ICTAnalyzer:
         print(f"⚖️ Found {len(eqh)} EQH zones, {len(eql)} EQL zones")
         return self.eq_levels
 
+    def get_last_earnings_date(self):
+        """
+        Get the most recent past earnings ANNOUNCEMENT date for a stock.
+        Returns None if not available or if stock is an ETF.
+        """
+        try:
+            ticker = yf.Ticker(self.symbol)
+            today = pd.Timestamp.now(tz='America/New_York').normalize()
+            
+            # Primary: Use earnings_dates (actual announcement dates with timezone)
+            try:
+                ed = ticker.earnings_dates
+                if ed is not None and hasattr(ed, 'index') and len(ed.index) > 0:
+                    # Index contains actual earnings announcement dates (e.g., 2025-11-19)
+                    announcement_dates = pd.to_datetime(ed.index)
+                    # Make timezone-aware comparison work
+                    past_dates = []
+                    for d in announcement_dates:
+                        if d.tzinfo is not None:
+                            d_compare = d.tz_convert('America/New_York')
+                        else:
+                            d_compare = d.tz_localize('America/New_York')
+                        if d_compare < today:
+                            past_dates.append(d)
+                    
+                    if past_dates:
+                        last_earnings = max(past_dates)
+                        # Convert to date string without timezone for display
+                        print(f"📅 Last earnings: {last_earnings.strftime('%Y-%m-%d')}")
+                        return last_earnings
+            except Exception as e:
+                print(f"⚠️ earnings_dates error: {e}")
+                pass
+            
+            # Secondary: Use earnings_history (fiscal quarter end dates - less accurate)
+            try:
+                eh = ticker.earnings_history
+                if eh is not None and hasattr(eh, 'index') and len(eh.index) > 0:
+                    quarter_dates = pd.to_datetime(eh.index)
+                    today_naive = pd.Timestamp.now().normalize()
+                    past_quarters = [d for d in quarter_dates if d < today_naive]
+                    if past_quarters:
+                        last_earnings = max(past_quarters)
+                        print(f"📅 Last earnings (quarter): {last_earnings.strftime('%Y-%m-%d')}")
+                        return last_earnings
+            except Exception:
+                pass
+            
+            # Tertiary: Infer from calendar future dates
+            try:
+                calendar = ticker.calendar
+                if isinstance(calendar, dict) and 'Earnings Date' in calendar:
+                    ed_val = calendar['Earnings Date']
+                    if isinstance(ed_val, (list, tuple)):
+                        next_date = pd.to_datetime(ed_val[0])
+                    else:
+                        next_date = pd.to_datetime(ed_val)
+                    # Subtract ~90 days
+                    last_earnings = next_date - pd.Timedelta(days=90)
+                    print(f"📅 Last earnings (inferred): {last_earnings.strftime('%Y-%m-%d')}")
+                    return last_earnings
+            except Exception:
+                pass
+            
+            print(f"⚠️ No earnings data for {self.symbol} (likely an ETF)")
+            return None
+            
+        except Exception as e:
+            print(f"⚠️ Error fetching earnings date: {e}")
+            return None
+
+    def calculate_earnings_vwap(self):
+        """
+        Calculate VWAP anchored from the most recent earnings date.
+        Returns list of {time, value} for chart line series.
+        """
+        earnings_date = self.get_last_earnings_date()
+        
+        if earnings_date is None:
+            self.earnings_vwap = None
+            self.earnings_vwap_date = None
+            return None
+        
+        # Filter data from earnings date onward
+        df = self.df.copy()
+        
+        # Handle timezone: match earnings_date to df.index timezone
+        if df.index.tz is not None:
+            if earnings_date.tzinfo is None:
+                earnings_date = earnings_date.tz_localize(df.index.tz)
+            else:
+                earnings_date = earnings_date.tz_convert(df.index.tz)
+        
+        df_since_earnings = df[df.index >= earnings_date]
+        
+        if len(df_since_earnings) < 2:
+            print(f"⚠️ Not enough data since earnings date")
+            self.earnings_vwap = None
+            self.earnings_vwap_date = None
+            return None
+        
+        # Calculate VWAP: cumulative(typical_price * volume) / cumulative(volume)
+        typical_price = (df_since_earnings['High'] + df_since_earnings['Low'] + df_since_earnings['Close']) / 3
+        cumulative_tp_vol = (typical_price * df_since_earnings['Volume']).cumsum()
+        cumulative_vol = df_since_earnings['Volume'].cumsum()
+        
+        vwap = cumulative_tp_vol / cumulative_vol
+        
+        # Prepare line data for chart
+        vwap_data = []
+        for idx, val in vwap.items():
+            if pd.notna(val):
+                vwap_data.append({
+                    'time': int(idx.timestamp()),
+                    'value': round(val, 2)
+                })
+        
+        self.earnings_vwap = vwap_data
+        self.earnings_vwap_date = earnings_date
+        self.earnings_vwap_current = vwap.iloc[-1] if len(vwap) > 0 else None
+        
+        print(f"📈 ER VWAP calculated: ${self.earnings_vwap_current:.2f} (from {earnings_date.strftime('%Y-%m-%d')})")
+        return vwap_data
+
     def generate_analysis_summary(self) -> str:
         """Generate a text summary of key levels relative to current price."""
         current_price = self.df['Close'].iloc[-1]
@@ -327,113 +452,13 @@ class ICTAnalyzer:
             if not lows_below.empty:
                 s = lows_below.iloc[-1]['Low']
                 summary.append(f"🟢 SUPPORT (Swing) @ ${s:.2f}")
+        
+        # 5. Earnings VWAP
+        if hasattr(self, 'earnings_vwap_current') and self.earnings_vwap_current is not None:
+            er_date = self.earnings_vwap_date.strftime('%m/%d') if self.earnings_vwap_date else ''
+            summary.append(f"📊 ER VWAP @ ${self.earnings_vwap_current:.2f} ({er_date})")
                 
         return "<br>".join(summary)
-
-    def calculate_fib_levels(self) -> dict:
-        """
-        Calculate Fibonacci retracement levels for premium/discount zones.
-        Uses the most recent swing high to swing low.
-        """
-        df = self.df
-        
-        # Find recent swing points
-        swing_highs = df[df.get('swing_high', False) == True]
-        swing_lows = df[df.get('swing_low', False) == True]
-        
-        if len(swing_highs) == 0 or len(swing_lows) == 0:
-            print("⚠️ Not enough swing points for Fib levels")
-            return {}
-        
-        # Get most recent swing high and low
-        recent_high = swing_highs['High'].iloc[-1]
-        recent_low = swing_lows['Low'].iloc[-1]
-        
-        # Ensure we have a valid range
-        if recent_high <= recent_low:
-            recent_high = df['High'].max()
-            recent_low = df['Low'].min()
-        
-        range_size = recent_high - recent_low
-        
-        fib_levels = {
-            '0.0 (Low)': recent_low,
-            '0.236': recent_low + range_size * 0.236,
-            '0.382': recent_low + range_size * 0.382,
-            '0.5 (Equilibrium)': recent_low + range_size * 0.5,
-            '0.618': recent_low + range_size * 0.618,
-            '0.786': recent_low + range_size * 0.786,
-            '1.0 (High)': recent_high,
-        }
-        
-        self.fib_levels = fib_levels
-        print(f"📐 Fib levels: Discount zone below ${fib_levels['0.5 (Equilibrium)']:.2f}")
-        return fib_levels
-    
-    def find_buy_signals(self) -> list:
-        """
-        Find "buy the dip" signals based on ICT concepts.
-        
-        Signal criteria:
-        1. Price enters discount zone (below 0.5 fib)
-        2. Near a bullish order block
-        3. Potential FVG fill
-        """
-        signals = []
-        df = self.df
-        current_price = df['Close'].iloc[-1]
-        
-        # Get zones
-        fib_levels = getattr(self, 'fib_levels', {})
-        order_blocks = getattr(self, 'order_blocks', [])
-        fvgs = getattr(self, 'fvgs', [])
-        
-        equilibrium = fib_levels.get('0.5 (Equilibrium)', 0)
-        
-        # Check if in discount zone
-        in_discount = current_price < equilibrium
-        
-        # Find nearby bullish order blocks (within 3% of current price)
-        nearby_obs = [
-            ob for ob in order_blocks 
-            if ob['type'] == 'bullish' 
-            and abs(ob['low'] - current_price) / current_price < 0.03
-        ]
-        
-        # Find unfilled bullish FVGs below current price
-        unfilled_fvgs = [
-            fvg for fvg in fvgs
-            if fvg['type'] == 'bullish'
-            and fvg['top'] > current_price * 0.97
-        ]
-        
-        # Generate signal
-        signal_strength = 0
-        reasons = []
-        
-        if in_discount:
-            signal_strength += 1
-            reasons.append("Price in discount zone (below 0.5 fib)")
-        
-        if nearby_obs:
-            signal_strength += 2
-            reasons.append(f"Near {len(nearby_obs)} bullish order block(s)")
-        
-        if unfilled_fvgs:
-            signal_strength += 1
-            reasons.append(f"{len(unfilled_fvgs)} bullish FVG(s) nearby")
-        
-        if signal_strength >= 2:
-            signals.append({
-                'symbol': self.symbol,
-                'price': current_price,
-                'strength': signal_strength,
-                'rating': '🟢 STRONG' if signal_strength >= 3 else '🟡 MODERATE',
-                'reasons': reasons
-            })
-        
-        self.signals = signals
-        return signals # End of find_buy_signals
 
     def calculate_trade_plan(self):
         """Calculate Bullish Trade Setup (Entry, SL, TP1-3)."""
@@ -511,8 +536,7 @@ class ICTAnalyzer:
             'tp3': tp3
         }
 
-    def generate_chart_html(self, show_obs: bool = True, show_fvgs: bool = True, 
-                           max_obs: int = 3, max_fvgs: int = 2, max_levels: int = 2) -> str:
+    def generate_chart_html(self, show_fvgs: bool = True, max_fvgs: int = 2, max_levels: int = 2) -> str:
         """
         Generate interactive TradingView Lightweight Chart (HTML).
         Includes side panel for analysis summary and Trade Plan.
@@ -537,10 +561,11 @@ class ICTAnalyzer:
                 'close': row['Close']
             })
             
-        # Prepare FVG Lines (Midpoints)
+        # Prepare FVG Lines (with start time from formation candle)
         fvg_lines = []
         current_price = df['Close'].iloc[-1]
-        threshold_pct = 0.03 # Only show levels within 3% of current price (Reduced from 5%)
+        last_candle_time = int(df.index[-1].timestamp())
+        threshold_pct = 0.03 # Only show levels within 3% of current price
         
         if show_fvgs and hasattr(self, 'fvgs'):
             # Only show unfilled and visible
@@ -560,14 +585,15 @@ class ICTAnalyzer:
                 midpoint = (f['top'] + f['bottom']) / 2
                 color = '#ffeb3b' if f['type'] == 'bullish' else '#ff9800'
                 title = "BULL GAP" if f['type'] == 'bullish' else "BEAR GAP"
+                # Get start time from FVG date
+                start_time = int(f['date'].timestamp())
                 
                 fvg_lines.append({
                     'price': midpoint,
                     'color': color,
                     'title': title,
-                    'lineWidth': 2,
-                    'lineStyle': 0, # Solid
-                    'axisLabelVisible': True
+                    'start_time': start_time,
+                    'end_time': last_candle_time
                 })
                 
         # Prepare EQH/EQL Levels (Filtered by distance but ensure closest are shown)
@@ -579,24 +605,68 @@ class ICTAnalyzer:
             for eql in self.eq_levels.get('lows', []):
                 all_levels.append({'price': eql['price'], 'type': 'EQL', 'color': '#26a69a'})
         
-        # 1. Select levels within threshold
-        relevant_levels = [
-            l for l in all_levels 
-            if abs(l['price'] - current_price) / current_price <= threshold_pct
-        ]
+        # 1. Filter: EQH must be ABOVE, EQL must be BELOW current price
+        valid_eqh = [l for l in all_levels if l['type'] == 'EQH' and l['price'] > current_price]
+        valid_eql = [l for l in all_levels if l['type'] == 'EQL' and l['price'] < current_price]
         
-        # 2. Ensure closest EQH and EQL are always included
-        all_eqh = [l for l in all_levels if l['type'] == 'EQH']
-        all_eql = [l for l in all_levels if l['type'] == 'EQL']
-        
-        all_eqh.sort(key=lambda x: abs(x['price'] - current_price))
-        all_eql.sort(key=lambda x: abs(x['price'] - current_price))
+        # Sort by distance
+        valid_eqh.sort(key=lambda x: abs(x['price'] - current_price))
+        valid_eql.sort(key=lambda x: abs(x['price'] - current_price))
         
         forced_levels = []
-        if all_eqh: forced_levels.append(all_eqh[0]) # Closest EQH
-        if all_eql: forced_levels.append(all_eql[0]) # Closest EQL
         
-        # Combine and remove duplicates
+        # Ensure at least one Resistance (EQH or Swing High)
+        if valid_eqh:
+            forced_levels.append(valid_eqh[0])
+        else:
+            # Fallback to nearest Swing High above price
+            swing_highs = self.df[self.df['swing_high']]
+            highs_above = swing_highs[swing_highs['High'] > current_price]
+            if not highs_above.empty:
+                nearest_high = highs_above.iloc[(highs_above['High'] - current_price).abs().argsort()[:1]]
+                forced_levels.append({
+                    'price': nearest_high['High'].iloc[0], 
+                    'type': 'Swing High', 
+                    'color': '#ef5350'
+                })
+            else:
+                # Secondary Fallback: Any recent high in last 300 candles
+                recent_window = self.df.iloc[-300:]
+                recent_highs = recent_window[recent_window['High'] > current_price]
+                if not recent_highs.empty:
+                     highest_recent = recent_highs.iloc[(recent_highs['High'] - current_price).abs().argsort()[:1]]
+                     forced_levels.append({
+                        'price': highest_recent['High'].iloc[0],
+                        'type': 'Recent High',
+                        'color': '#ef5350'
+                     })
+
+        # Ensure at least one Support (EQL or Swing Low)
+        if valid_eql:
+            forced_levels.append(valid_eql[0])
+        else:
+            # Fallback to nearest Swing Low below price
+            swing_lows = self.df[self.df['swing_low']]
+            lows_below = swing_lows[swing_lows['Low'] < current_price]
+            if not lows_below.empty:
+                nearest_low = lows_below.iloc[(current_price - lows_below['Low']).abs().argsort()[:1]]
+                forced_levels.append({
+                    'price': nearest_low['Low'].iloc[0], 
+                    'type': 'Swing Low', 
+                    'color': '#26a69a'
+                })
+            else:
+                # Secondary Fallback: Any recent low in last 300 candles
+                recent_window = self.df.iloc[-300:]
+                recent_lows = recent_window[recent_window['Low'] < current_price]
+                if not recent_lows.empty:
+                     lowest_recent = recent_lows.iloc[(current_price - recent_lows['Low']).abs().argsort()[:1]]
+                     forced_levels.append({
+                        'price': lowest_recent['Low'].iloc[0],
+                        'type': 'Recent Low',
+                        'color': '#26a69a'
+                     })
+        
         final_levels_pool = []
         seen_prices = set()
         
@@ -607,6 +677,7 @@ class ICTAnalyzer:
                 seen_prices.add(l['price'])
                 
         # Add relevant
+        relevant_levels = valid_eqh + valid_eql
         for l in relevant_levels:
             if l['price'] not in seen_prices:
                 final_levels_pool.append(l)
@@ -617,10 +688,14 @@ class ICTAnalyzer:
         display_levels = final_levels_pool[:max_levels] 
 
         for lvl in display_levels:
+             # Determine role based on current price location
+             is_resistance = lvl['price'] > current_price
+             role_label = "Res" if is_resistance else "Sup"
+             
              level_lines.append({
                 'price': lvl['price'],
                 'color': lvl['color'],
-                'title': f"{lvl['type']} ({'Res' if lvl['type']=='EQH' else 'Sup'})",
+                'title': f"{lvl['type']} ({role_label})",
                 'lineWidth': 1,
                 'lineStyle': 2, # Dashed
                 'axisLabelVisible': True
@@ -654,167 +729,190 @@ class ICTAnalyzer:
             {'price': plan['tp3'], 'color': '#2196f3', 'title': 'TP3', 'style': 2},
         ]
 
+        # Prepare Earnings VWAP data
+        earnings_vwap_data = getattr(self, 'earnings_vwap', None) or []
+        earnings_vwap_date = getattr(self, 'earnings_vwap_date', None)
+        earnings_vwap_current = getattr(self, 'earnings_vwap_current', None)
+        
         # Serialize to JSON
         chart_data = json.dumps({
             'candles': candle_data,
             'fvg_lines': fvg_lines,
             'level_lines': level_lines,
             'trade_lines': trade_lines,
+            'earnings_vwap': earnings_vwap_data,
             'symbol': self.symbol,
-            'timeframe': self.timeframe
-        })
+            'width': 800,
+            'height': 600
+        }, default=str)
         
         # HTML Template
-        html_template = f"""
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{self.symbol} - ICT Analysis</title>
-    <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
-    <style>
-        body {{ margin: 0; padding: 0; background-color: #131722; color: #d1d4dc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; overflow: hidden; }}
-        .container {{ display: flex; height: 100vh; width: 100vw; }}
-        #chart-container {{ flex: 1; height: 100%; position: relative; }}
-        #sidebar {{ width: 300px; background-color: #1e222d; border-left: 1px solid #363c4e; padding: 20px; overflow-y: auto; box-sizing: border-box; }}
-        h2 {{ margin-top: 0; color: #d1d4dc; font-size: 18px; }}
-        .summary-item {{ margin-bottom: 12px; padding: 10px; background-color: #2a2e39; border-radius: 4px; font-size: 14px; line-height: 1.4; }}
-        .header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }}
-        .symbol {{ font-size: 24px; font-weight: bold; color: #ffffff; }}
-        .timeframe {{ color: #787b86; }}
-        #loading {{ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 24px; pointer-events: none; }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div id="chart-container">
-            <div id="loading">Loading Chart...</div>
-        </div>
-        <div id="sidebar">
-            <div class="header">
-                <span class="symbol">{self.symbol}</span>
-                <span class="timeframe">{self.timeframe}</span>
+        html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>{self.symbol} ICT Analysis</title>
+            <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+            <style>
+                body {{ background: #0a0a0a; color: #d1d4dc; font-family: -apple-system, sans-serif; margin: 0; display: flex; height: 100vh; }}
+                #chart-container {{ flex: 1; position: relative; }}
+                #sidebar {{ width: 280px; background: #1a1a2e; padding: 20px; border-left: 1px solid #363c4e; overflow-y: auto; box-shadow: -2px 0 10px rgba(0,0,0,0.3); }}
+                h2 {{ color: #2196f3; margin-top: 0; font-size: 20px; }}
+                h3 {{ color: #a0a0a0; font-size: 14px; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #363c4e; padding-bottom: 5px; }}
+                .stat-item {{ display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }}
+                .bullish {{ color: #4caf50; }}
+                .bearish {{ color: #ef5350; }}
+                .legend {{ position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 24px; font-weight: bold; color: rgba(255, 255, 255, 0.7); }}
+            </style>
+        </head>
+        <body>
+            <div id="chart-container">
+                <div class="legend">{self.symbol} 4H</div>
             </div>
-            <h2>ICT Analysis</h2>
-            <div class="summary-item">
-                {summary_html}
-            </div>
-            <div style="margin-top: 20px; color: #787b86; font-size: 12px;">
-                <p><strong>Legend:</strong></p>
-                <p><span style="color: #ffeb3b">■</span> Bullish FVG (Midpoint)</p>
-                <p><span style="color: #ff9800">■</span> Bearish FVG (Midpoint)</p>
-                <p><span style="color: #ef5350">--</span> Resistance (EQH)</p>
-                <p><span style="color: #26a69a">--</span> Support (EQL)</p>
-                <p><span style="color: #4caf50">--</span> <strong>Entry</strong></p>
-                <p><span style="color: #2196f3">--</span> <strong>Take Profit (TP)</strong></p>
-                <p><span style="color: #ef5350">__</span> <strong>Stop Loss (SL)</strong></p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        try {{
-            const data = {chart_data};
             
-            const chartContainer = document.getElementById('chart-container');
-            const chart = LightweightCharts.createChart(chartContainer, {{
-                layout: {{
-                    background: {{ type: 'solid', color: '#131722' }},
-                    textColor: '#d1d4dc',
-                }},
-                grid: {{
-                    vertLines: {{ color: '#363c4e' }},
-                    horzLines: {{ color: '#363c4e' }},
-                }},
-                crosshair: {{
-                    mode: LightweightCharts.CrosshairMode.Normal,
-                }},
-                rightPriceScale: {{
-                    borderColor: '#363c4e',
-                }},
-                timeScale: {{
-                    borderColor: '#363c4e',
-                    timeVisible: true,
-                }},
-            }});
+            <div id="sidebar">
+                <h2>📊 Analysis Summary</h2>
+                <div style="font-size: 13px; line-height: 1.6;">
+                    {summary_html}
+                </div>
+                
+                <h3>Key Levels Found</h3>
+                <div class="stat-item">
+                    <span>Fair Value Gaps:</span>
+                    <span>{len(getattr(self, 'fvgs', []))}</span>
+                </div>
+                <div class="stat-item">
+                    <span>EQH/EQL Zones:</span>
+                    <span>{len(self.eq_levels.get('highs', [])) + len(self.eq_levels.get('lows', []))}</span>
+                </div>
+                
+            </div>
 
-            // Candlestick Series
-            const candlestickSeries = chart.addCandlestickSeries({{
-                upColor: '#26a69a',
-                downColor: '#ef5350',
-                borderVisible: false,
-                wickUpColor: '#26a69a',
-                wickDownColor: '#ef5350',
-            }});
-            candlestickSeries.setData(data.candles);
+            <script>
+                try {{
+                    const data = {chart_data};
+                    
+                    if (!data.candles || data.candles.length === 0) {{
+                        document.getElementById('chart-container').innerHTML = '<div style="color:white;text-align:center;padding:20px;">No candle data available</div>';
+                        throw new Error("No data");
+                    }}
 
-            // Add FVG Lines
-            data.fvg_lines.forEach(line => {{
-                candlestickSeries.createPriceLine({{
-                    price: line.price, color: line.color, lineWidth: line.lineWidth,
-                    lineStyle: line.lineStyle, axisLabelVisible: line.axisLabelVisible, title: line.title,
-                }});
-            }});
-
-            // Add Level Lines (EQH/EQL)
-            data.level_lines.forEach(line => {{
-                candlestickSeries.createPriceLine({{
-                    price: line.price, color: line.color, lineWidth: line.lineWidth,
-                    lineStyle: line.lineStyle, axisLabelVisible: line.axisLabelVisible, title: line.title,
-                }});
-            }});
-
-            // Add Trade Plan Lines
-            if (data.trade_lines) {{
-                data.trade_lines.forEach(line => {{
-                    candlestickSeries.createPriceLine({{
-                        price: line.price, color: line.color, lineWidth: 2,
-                        lineStyle: line.style, axisLabelVisible: true, title: line.title,
+                    const chartContainer = document.getElementById('chart-container');
+                    const chart = LightweightCharts.createChart(chartContainer, {{
+                        layout: {{ background: {{ type: 'solid', color: '#0a0a0a' }}, textColor: '#d1d4dc' }},
+                        grid: {{ vertLines: {{ color: '#1f2937' }}, horzLines: {{ color: '#1f2937' }} }},
+                        rightPriceScale: {{ borderColor: '#363c4e' }},
+                        timeScale: {{ borderColor: '#363c4e', timeVisible: true }},
+                        crosshair: {{ mode: LightweightCharts.CrosshairMode.Normal }},
                     }});
-                }});
-            }}
+                    
+                    // Candle Series
+                    const candlestickSeries = chart.addCandlestickSeries({{
+                        upColor: '#26a69a', downColor: '#ef5350', borderVisible: false, wickUpColor: '#26a69a', wickDownColor: '#ef5350'
+                    }});
+                    candlestickSeries.setData(data.candles);
 
-            // Adjust Visible Range (Compact View - Last ~3 months / 150 candles)
-            const totalCandles = data.candles.length;
-            const zoomCandles = 150; // Approx 3 trading months (4h timeframe)
-            
-            if (totalCandles > zoomCandles) {{
-                chart.timeScale().setVisibleLogicalRange({{
-                    from: totalCandles - zoomCandles,
-                    to: totalCandles - 1
-                }});
-            }} else {{
-                chart.timeScale().fitContent();
-            }}
+                    // Markers (Text for Lines)
+                    const markers = [];
+                    
+                    // FVG Areas
+                    if (data.fvg_lines) {{
+                        data.fvg_lines.forEach(line => {{
+                            const fvgSeries = chart.addLineSeries({{
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: false,
+                                lastValueVisible: true,
+                                title: line.title,
+                                crosshairMarkerVisible: true
+                            }});
+                            
+                            const lineData = [];
+                            data.candles.forEach(c => {{
+                                if (c.time >= line.start_time) {{
+                                    lineData.push({{ time: c.time, value: line.price }});
+                                }}
+                            }});
+                            if (lineData.length > 0) fvgSeries.setData(lineData);
+                        }});
+                    }}
+                    
+                    // Set Markers
+                    candlestickSeries.setMarkers(markers);
 
-            // Responsive Resize
-            window.addEventListener('resize', () => {{
-                chart.applyOptions({{ 
-                    width: chartContainer.clientWidth, 
-                    height: chartContainer.clientHeight 
-                }});
-            }});
-            
-            // Remove loading text
-            document.getElementById('loading').style.display = 'none';
-            console.log("Chart loaded successfully");
-            
-        }} catch (e) {{
-            console.error("Error loading chart:", e);
-            document.getElementById('loading').innerText = "Error: " + e.message;
-        }}
-    </script>
-</body>
-</html>
+                    // Key Levels
+                    if (data.level_lines) {{
+                        data.level_lines.forEach(line => {{
+                            const levelSeries = chart.addLineSeries({{
+                                color: line.color,
+                                lineWidth: line.lineWidth || 1,
+                                lineStyle: line.lineStyle || LightweightCharts.LineStyle.Dashed,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            }});
+                             
+                            const lineData = data.candles.map(c => ({{ time: c.time, value: line.price }}));
+                            levelSeries.setData(lineData);
+                        }});
+                    }}
+                    
+                    // Trade Plan Lines
+                    if (data.trade_lines) {{
+                        data.trade_lines.forEach(line => {{
+                            const tradeSeries = chart.addLineSeries({{
+                                color: line.color,
+                                lineWidth: 2,
+                                lineStyle: line.style === 2 ? LightweightCharts.LineStyle.Dashed : LightweightCharts.LineStyle.Solid,
+                                priceLineVisible: true,
+                                lastValueVisible: true,
+                                title: line.title
+                            }});
+                            
+                            const recentCandles = data.candles.slice(-100);
+                            const lineData = recentCandles.map(c => ({{ time: c.time, value: line.price }}));
+                            tradeSeries.setData(lineData);
+                        }});
+                    }}
+
+                    // Earnings VWAP
+                    if (data.earnings_vwap && data.earnings_vwap.length > 0) {{
+                        const vwapSeries = chart.addLineSeries({{
+                            color: '#b39ddb',
+                            lineWidth: 2,
+                            lineStyle: LightweightCharts.LineStyle.Solid,
+                            title: 'Earnings VWAP',
+                            priceLineVisible: false
+                        }});
+                        vwapSeries.setData(data.earnings_vwap);
+                    }}
+                    
+                    // Set visible range safely
+                    const lastTime = data.candles[data.candles.length - 1].time;
+                    const startTime = data.candles[Math.max(0, data.candles.length - 100)].time;
+                    chart.timeScale().setVisibleRange({{ from: startTime, to: lastTime }});
+                    
+                    // Resizing
+                    window.addEventListener('resize', () => {{
+                        chart.resize(chartContainer.clientWidth, chartContainer.clientHeight);
+                    }});
+                    
+                }} catch (e) {{
+                    console.error("Chart Error:", e);
+                    document.body.innerHTML += '<div style="position:absolute;top:10px;left:10px;color:red;background:rgba(0,0,0,0.8);padding:10px;">JS Error: ' + e.message + '</div>';
+                }}
+            </script>
+        </body>
+        </html>
         """
-        return html_template
-
+        return html
 
 def analyze_stock(symbol: str, timeframe: str = "4h", end_date: str = None):
-    """Run full ICT analysis on a stock."""
-    print(f"\n{'='*50}")
-    print(f"🔍 ICT Analysis: {symbol} ({timeframe})")
-    if end_date:
-        print(f"🕒 Backtesting Date: {end_date}")
+    """
+    Main entry point for analysis.
+    """
+    print(f"\n🔎 ANALYZING {symbol} ({timeframe})...")
     print('='*50)
     
     analyzer = ICTAnalyzer(symbol, timeframe)
@@ -840,127 +938,24 @@ def analyze_stock(symbol: str, timeframe: str = "4h", end_date: str = None):
 
     analyzer.detect_swing_points()
     analyzer.detect_equal_highs_lows()
-    analyzer.detect_order_blocks()
     analyzer.detect_fair_value_gaps()
-    analyzer.calculate_fib_levels()
-    signals = analyzer.find_buy_signals()
+    analyzer.calculate_earnings_vwap()  # Earnings VWAP
     
-    print(f"\n{'='*50}")
-    print("📈 BUY THE DIP SIGNALS")
-    print('='*50)
+    # Check for valid structure (at least one FVG or Level to trade against)
+    has_structure = (hasattr(analyzer, 'fvgs') and analyzer.fvgs) or \
+                    (hasattr(analyzer, 'eq_levels') and (analyzer.eq_levels['highs'] or analyzer.eq_levels['lows']))
     
-    if signals:
-        for signal in signals:
-            print(f"\n{signal['rating']} - {signal['symbol']} @ ${signal['price']:.2f}")
-            for reason in signal['reasons']:
-                print(f"  • {reason}")
+    if has_structure:
+        plan = analyzer.calculate_trade_plan()
+        print(f"\n📊 TRADE PLAN: {plan['type']}")
+        print(f"   Entry: ${plan['entry']:.2f}")
+        print(f"   sl:    ${plan['sl']:.2f}")
+        print(f"   tp1:   ${plan['tp1']:.2f}")
+        print(f"   tp3:   ${plan['tp3']:.2f}")
     else:
-        print("❌ No strong buy signals detected")
+        print("⚠️ No sufficient structure found for trade plan.")
     
     return analyzer
-
-
-def scan_history(symbol: str, days_back: int = 365):
-    """
-    Scan history candle-by-candle to find past signals and simulate outcomes.
-    """
-    print(f"\n🔄 Scanning {symbol} history ({days_back} days)...")
-    
-    # 1. Fetch full data
-    analyzer = ICTAnalyzer(symbol, "4h")
-    full_df = analyzer.fetch_data(period="2y")
-    
-    # 2. Iterate backwards from today
-    # We need enough history for indicators, so start from end
-    start_idx = len(full_df) - (days_back * 6) # Approx 6 candles per day (4h)
-    if start_idx < 200: start_idx = 200 # Minimum warm-up
-    
-    trades = []
-    
-    # Iterate through history
-    # Step size: 1 candle
-    for i in range(start_idx, len(full_df) - 5): # Leave room for outcome check
-        # Slice data to simulate "live" at time i
-        current_date = full_df.index[i]
-        
-        # Create temp analyzer for this point in time
-        sim = ICTAnalyzer(symbol, "4h")
-        # Optimization: Don't re-download, just slice existing DF
-        sim.df = full_df.iloc[:i+1].copy() 
-        
-        # Run Detection
-        sim.detect_swing_points()
-        sim.detect_equal_highs_lows()
-        sim.detect_order_blocks()
-        sim.detect_fair_value_gaps()
-        sim.calculate_fib_levels()
-        signals = sim.find_buy_signals()
-        
-        # Check if Signal Found
-        strong_signal = next((s for s in signals if "STRONG" in s['rating']), None)
-        
-        if strong_signal:
-            # Generate Trade Plan
-            plan = sim.calculate_trade_plan()
-            
-            # Simulate Outcome
-            entry = plan['entry']
-            tp1 = plan['tp1']
-            sl = plan['sl']
-            
-            outcome = "PENDING"
-            pnl_r = 0
-            
-            # Check future candles
-            future_df = full_df.iloc[i+1:]
-            for _, row in future_df.iterrows():
-                # Check hit SL first (Worst case assumption)
-                if row['Low'] <= sl:
-                    outcome = "LOSS ❌"
-                    pnl_r = -1.0
-                    break
-                # Check hit TP
-                if row['High'] >= tp1:
-                    outcome = "WIN ✅"
-                    pnl_r = (tp1 - entry) / (entry - sl)
-                    break
-            
-            # Record Trade
-            print(f"  Found Signal @ {current_date}: {outcome} (R: {pnl_r:.2f})")
-            
-            trades.append({
-                'date': current_date,
-                'entry': entry,
-                'outcome': outcome,
-                'pnl': pnl_r,
-                'plan': plan
-            })
-            
-            # Generate Snapshot ID
-            import os
-            output_dir = os.path.join(os.getcwd(), 'samples')
-            if not os.path.exists(output_dir):
-                os.makedirs(output_dir)
-                
-            snapshot_name = f"{symbol}_{current_date.strftime('%Y-%m-%d_%H%M')}_{'WIN' if 'WIN' in outcome else 'LOSS'}.html"
-            filepath = os.path.join(output_dir, snapshot_name)
-            
-            html = sim.generate_chart_html()
-            with open(filepath, "w") as f:
-                f.write(html)
-                
-            # Skip forward to avoid duplicate signals for same move
-            # Simple skip: 10 candles
-            # Note: The loop variable 'i' cannot be modified directly in for-loop
-            # but we can't easily skip in a standard for-range. 
-            # Ideally use while loop, but for now we just accept clusters or filter externally.
-            
-    print(f"\n📊 Scan Complete. Found {len(trades)} trades.")
-    
-    if trades:
-        wins = len([t for t in trades if "WIN" in t['outcome']])
-        win_rate = (wins / len(trades)) * 100
-        print(f"🏆 Win Rate: {win_rate:.1f}%")
 
 
 if __name__ == "__main__":
@@ -968,39 +963,35 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="ICT Buy the Dip Analyzer")
     parser.add_argument("--date", type=str, help="Backtest date (YYYY-MM-DD)", default=None)
     parser.add_argument("--symbol", type=str, help="Specific symbol (optional)", default=None)
-    parser.add_argument("--scan", action="store_true", help="Scan last year for historical signals")
     
     args = parser.parse_args()
     
     symbol = args.symbol if args.symbol else "NVDA"
     
-    if args.scan:
-        scan_history(symbol)
-    else:
-        # Single Analysis
-        symbols = [symbol] if args.symbol else ["AAPL", "NVDA", "SPY"]
-        for s in symbols:
-            analyzer = analyze_stock(s, timeframe="4h", end_date=args.date)
+    # Single Analysis
+    symbols = [symbol] if args.symbol else ["AAPL", "NVDA", "SPY"]
+    for s in symbols:
+        analyzer = analyze_stock(s, timeframe="4h", end_date=args.date)
+        
+        if analyzer and not analyzer.df.empty:
+            html_content = analyzer.generate_chart_html()
             
-            if analyzer and not analyzer.df.empty:
-                html_content = analyzer.generate_chart_html()
-                
-                # Filename based on date
-                date_str = args.date if args.date else "latest"
-                filename = f"{s}_{date_str}_ict_analysis.html"
-                
-                # Save to specific folder
-                import os
-                output_dir = "samples"
-                if not os.path.exists(output_dir):
-                    try:
-                        os.makedirs(output_dir)
-                    except OSError:
-                        # Fallback to current dir if permission issue (e.g. cloud env)
-                        output_dir = "."
-                        
-                filepath = os.path.join(output_dir, filename)
-                
-                with open(filepath, "w") as f:
-                    f.write(html_content)
-                print(f"📊 Chart saved to {filepath}")
+            # Filename based on date
+            date_str = args.date if args.date else "latest"
+            filename = f"{s}_{date_str}_ict_analysis.html"
+            
+            # Save to specific folder
+            import os
+            output_dir = "samples"
+            if not os.path.exists(output_dir):
+                try:
+                    os.makedirs(output_dir)
+                except OSError:
+                    # Fallback to current dir if permission issue (e.g. cloud env)
+                    output_dir = "."
+                    
+            filepath = os.path.join(output_dir, filename)
+            
+            with open(filepath, "w") as f:
+                f.write(html_content)
+            print(f"📊 Chart saved to {filepath}")
