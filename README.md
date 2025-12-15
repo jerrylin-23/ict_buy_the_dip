@@ -88,26 +88,26 @@ ICT/
 
 ### 📸 Example Charts
 
-View sample trade snapshots from the backtest (click to view live):
+View sample trade snapshots from the backtest:
 
 #### NVDA Examples
 | Trade | Outcome | Chart |
 |-------|---------|-------|
-| 2023-12-20 | ✅ WIN (TP3) | [View Chart](https://jerrylin-23.github.io/ict_buy_the_dip/src/samples/nvda_daily_1214_2105/charts/04_2023-12-20_WIN_TP3.html) |
-| 2024-03-08 | ✅ WIN (TP1) | [View Chart](https://jerrylin-23.github.io/ict_buy_the_dip/src/samples/nvda_daily_1214_2105/charts/35_2024-03-08_WIN_TP1.html) |
-| 2024-04-11 | ❌ LOSS (SL) | [View Chart](https://jerrylin-23.github.io/ict_buy_the_dip/src/samples/nvda_daily_1214_2105/charts/44_2024-04-11_LOSS_SL.html) |
+| 2023-12-20 | ✅ WIN (TP3) | [View Chart](https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/nvda_daily_1214_2105/charts/04_2023-12-20_WIN_TP3.html) |
+| 2024-03-08 | ✅ WIN (TP1) | [View Chart](https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/nvda_daily_1214_2105/charts/35_2024-03-08_WIN_TP1.html) |
+| 2024-04-11 | ❌ LOSS (SL) | [View Chart](https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/nvda_daily_1214_2105/charts/44_2024-04-11_LOSS_SL.html) |
 
 #### GOOGL Examples
 | Trade | Outcome | Chart |
 |-------|---------|-------|
-| 2023-12-15 | ✅ WIN (TP3) | [View Chart](https://jerrylin-23.github.io/ict_buy_the_dip/src/samples/googl_daily_1214_2115/charts/01_2023-12-15_WIN_TP3.html) |
-| 2024-01-02 | ✅ WIN (TP3) | [View Chart](https://jerrylin-23.github.io/ict_buy_the_dip/src/samples/googl_daily_1214_2115/charts/03_2024-01-02_WIN_TP3.html) |
+| 2023-12-15 | ✅ WIN (TP3) | [View Chart](https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/googl_daily_1214_2115/charts/01_2023-12-15_WIN_TP3.html) |
+| 2024-01-02 | ✅ WIN (TP3) | [View Chart](https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/googl_daily_1214_2115/charts/03_2024-01-02_WIN_TP3.html) |
 
 #### AAPL Examples
 | Trade | Outcome | Chart |
 |-------|---------|-------|
-| 2023-12-16 | ❌ LOSS (SL) | [View Chart](https://jerrylin-23.github.io/ict_buy_the_dip/src/samples/aapl_daily_1214_2123/charts/01_2023-12-16_LOSS_SL.html) |
-| 2023-12-19 | ❌ LOSS (SL) | [View Chart](https://jerrylin-23.github.io/ict_buy_the_dip/src/samples/aapl_daily_1214_2123/charts/03_2023-12-19_LOSS_SL.html) |
+| 2025-01-02 | ✅ WIN (TP1) | [View Chart](https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/aapl_daily_1214_2123/charts/100_2025-01-02_WIN_TP1.html) |
+| 2023-12-16 | ❌ LOSS (SL) | [View Chart](https://github.com/jerrylin-23/ict_buy_the_dip/blob/master/src/samples/aapl_daily_1214_2123/charts/01_2023-12-16_LOSS_SL.html) |
 
 > 📁 **Browse all 700+ charts**: [src/samples/](src/samples/) - includes NVDA, GOOGL, and AAPL backtests
 
